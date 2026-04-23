@@ -23,7 +23,7 @@ export async function POST(req: Request) {
 		}
 
 		// 1. Tier-aware rate limiting
-		const isPremium = session.user.role === Role.PREMIUM || session.user.role === Role.COUPLES;
+		const isPremium = (session.user as any).role === Role.PREMIUM || (session.user as any).role === Role.COUPLES;
 		const limiter = isPremium
 			? Limiters.advisorPremium(session.user.id)
 			: Limiters.advisorFree(session.user.id);

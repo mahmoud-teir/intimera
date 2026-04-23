@@ -94,7 +94,7 @@ export async function createPost(data: { title: string, body: string, topicId: s
 		}
 
 		// Check for premium tier if needed
-		if (session.user.role === "USER") {
+		if ((session.user as any).role === "USER") {
 			return { success: false, error: "Premium subscription required to post." };
 		}
 
@@ -215,7 +215,7 @@ export async function createReply(data: { postId: string, parentId?: string, bod
 			return { success: false, error: "Unauthorized" };
 		}
 
-		if (session.user.role === "USER") {
+		if ((session.user as any).role === "USER") {
 			return { success: false, error: "Premium subscription required to reply." };
 		}
 

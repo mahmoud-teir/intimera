@@ -9,7 +9,7 @@ import { Role } from "@/generated/prisma/client";
 export async function updateUserRole(targetUserId: string, newRole: Role) {
 	const session = await auth.api.getSession({ headers: await headers() });
 
-	if (!session?.user || (session.user.role as Role) !== Role.ADMIN) {
+	if (!session?.user || ((session.user as any).role as Role) !== Role.ADMIN) {
 		throw new Error("Unauthorized: Only admins can change user roles.");
 	}
 
@@ -29,7 +29,7 @@ export async function updateUserRole(targetUserId: string, newRole: Role) {
 export async function deleteUser(id: string) {
 	const session = await auth.api.getSession({ headers: await headers() });
 
-	if (!session?.user || (session.user.role as Role) !== Role.ADMIN) {
+	if (!session?.user || ((session.user as any).role as Role) !== Role.ADMIN) {
 		throw new Error("Unauthorized: Only admins can delete users.");
 	}
 

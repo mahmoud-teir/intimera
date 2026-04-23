@@ -17,7 +17,7 @@ export async function generateMetadata() {
 export default async function AdminUsersPage() {
 	const t = await getTranslations("admin");
 	const session = await auth.api.getSession({ headers: await headers() });
-	if ((session?.user?.role as Role) !== Role.ADMIN) redirect("/admin/content");
+	if (((session?.user as any)?.role as Role) !== Role.ADMIN) redirect("/admin/content");
 
 	const users = await db.user.findMany({
 		orderBy: { createdAt: "desc" },

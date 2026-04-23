@@ -14,7 +14,7 @@ export default async function DashboardPage() {
 	const session = await auth.api.getSession({ headers: await headers() });
 
 	// Redirect privileged roles to the admin panel
-	const role = session?.user?.role as Role | undefined;
+	const role = (session?.user as any)?.role as Role | undefined;
 	if (role === Role.ADMIN) redirect("/admin/analytics");
 	if (role === Role.CONTENT_MANAGER) redirect("/admin/content");
 	

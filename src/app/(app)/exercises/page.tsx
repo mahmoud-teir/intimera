@@ -32,7 +32,7 @@ export default async function ExercisesPage({
 		headers: await headers()
 	});
 
-	const userTier = session?.user?.role === "ADMIN" 
+	const userTier = (session?.user as any)?.role === "ADMIN" 
 		? SubscriptionTier.PREMIUM 
 		: SubscriptionTier.FREE;
 

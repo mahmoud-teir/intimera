@@ -19,7 +19,7 @@ export default async function AdminContentPage() {
 	const session = await auth.api.getSession({ headers: await headers() });
 	if (!session?.user) redirect("/login?returnTo=/admin/content");
 
-	const role = session.user.role as Role;
+	const role = (session.user as any).role as Role;
 	const content = await db.content.findMany({
 		orderBy: { createdAt: "desc" },
 		include: {

@@ -16,7 +16,7 @@ export default async function AdminLayout({
 		redirect("/login?returnTo=/admin");
 	}
 
-	const role = session.user.role as Role;
+	const role = (session.user as any).role as Role;
 	if (role !== Role.ADMIN && role !== Role.CONTENT_MANAGER) {
 		redirect("/dashboard");
 	}

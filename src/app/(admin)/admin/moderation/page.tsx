@@ -30,7 +30,7 @@ async function rejectPost(id: string) {
 export default async function AdminModerationPage() {
 	const t = await getTranslations("admin");
 	const session = await auth.api.getSession({ headers: await headers() });
-	if ((session?.user?.role as Role) === Role.CONTENT_MANAGER) redirect("/admin/content");
+	if (((session?.user as any)?.role as Role) === Role.CONTENT_MANAGER) redirect("/admin/content");
 
 	const tCommon = await getTranslations("common");
 

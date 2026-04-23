@@ -13,7 +13,7 @@ export default async function SubscriptionSettingsPage() {
 
 	if (!session?.user) return null;
 
-	const userRole = session.user.role;
+	const userRole = (session.user as any).role;
 
 	return (
 		<div>

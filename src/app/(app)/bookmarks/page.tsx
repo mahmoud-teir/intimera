@@ -23,7 +23,7 @@ export default async function BookmarksPage() {
 	const t = await getTranslations("bookmarks");
 	const locale = await getLocale();
 	
-	const userTier = session?.user?.role === "ADMIN" 
+	const userTier = (session?.user as any)?.role === "ADMIN" 
 		? SubscriptionTier.PREMIUM 
 		: SubscriptionTier.FREE;
 

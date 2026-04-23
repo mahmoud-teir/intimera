@@ -9,7 +9,7 @@ import { Role, ContentStatus } from "@/generated/prisma/client";
 async function getSessionRole(): Promise<Role> {
 	const session = await auth.api.getSession({ headers: await headers() });
 	if (!session?.user) throw new Error("Unauthenticated");
-	return session.user.role as Role;
+	return (session.user as any).role as Role;
 }
 
 export async function createContent(data: any) {

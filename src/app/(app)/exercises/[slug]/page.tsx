@@ -48,7 +48,7 @@ export default async function ExerciseWizardPage({
 		steps = exercise.steps.filter(s => s.locale === 'en');
 	}
 
-	const userTier = session.user.role === "ADMIN" ? SubscriptionTier.PREMIUM : SubscriptionTier.FREE;
+	const userTier = (session.user as any).role === "ADMIN" ? SubscriptionTier.PREMIUM : SubscriptionTier.FREE;
 	const isLocked = exercise.tier === SubscriptionTier.PREMIUM && userTier === SubscriptionTier.FREE;
 
 	if (isLocked) {

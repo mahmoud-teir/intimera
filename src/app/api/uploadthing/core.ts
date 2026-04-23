@@ -17,7 +17,7 @@ export const ourFileRouter = {
 			});
 			if (!session?.user) throw new UploadThingError("Unauthorized");
 
-			const role = session.user.role as Role;
+			const role = (session.user as any).role as Role;
 			if (role !== Role.ADMIN && role !== Role.CONTENT_MANAGER) {
 				throw new UploadThingError("Forbidden: Insufficient role");
 			}
@@ -38,7 +38,7 @@ export const ourFileRouter = {
 			});
 			if (!session?.user) throw new UploadThingError("Unauthorized");
 
-			const role = session.user.role as Role;
+			const role = (session.user as any).role as Role;
 			if (role !== Role.ADMIN && role !== Role.CONTENT_MANAGER) {
 				throw new UploadThingError("Forbidden: Insufficient role");
 			}

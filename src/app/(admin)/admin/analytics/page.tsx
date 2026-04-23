@@ -25,7 +25,7 @@ export async function generateMetadata() {
 export default async function AdminAnalyticsPage() {
 	const t = await getTranslations("admin");
 	const session = await auth.api.getSession({ headers: await headers() });
-	if ((session?.user?.role as Role) === Role.CONTENT_MANAGER) redirect("/admin/content");
+	if (((session?.user as any)?.role as Role) === Role.CONTENT_MANAGER) redirect("/admin/content");
 
 	// Fetch platform metrics
 	const [userCount, premiumCount, contentCount, aiSessions, checkIns, pendingPosts, newUsers] = await Promise.all([

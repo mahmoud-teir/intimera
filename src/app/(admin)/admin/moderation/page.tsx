@@ -7,6 +7,8 @@ import { Role } from "@/generated/prisma/client";
 import { ModerationQueue } from "@/components/admin/moderation-queue";
 import { ShieldAlert, CheckCircle, XCircle } from "lucide-react";
 
+import { getTranslations } from "next-intl/server";
+
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
@@ -26,11 +28,11 @@ async function rejectPost(id: string) {
 }
 
 export default async function AdminModerationPage() {
-	const t = await import("next-intl/server").then(m => m.getTranslations("admin"));
+	const t = await getTranslations("admin");
 	const session = await auth.api.getSession({ headers: await headers() });
 	if ((session?.user?.role as Role) === Role.CONTENT_MANAGER) redirect("/admin/content");
 
-	const tCommon = await import("next-intl/server").then(m => m.getTranslations("common"));
+	const tCommon = await getTranslations("common");
 
 	const [pendingPosts, stats] = await Promise.all([
 		db.communityPost.findMany({

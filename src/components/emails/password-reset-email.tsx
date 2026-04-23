@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Html, Head, Preview, Body, Container, Section, Text, Button, Heading, Hr } from "@react-email/components";
+import { Html, Head, Preview, Body, Container, Section, Text, Button, Heading, Hr } from "react-email";
 
 interface PasswordResetEmailProps {
 	userName?: string;

@@ -1,5 +1,5 @@
 import { Resend } from "resend";
-import { render } from "@react-email/render";
+import { render } from "react-email";
 import * as React from "react";
 
 import { WelcomeEmail } from "@/components/emails/welcome-email";

@@ -6,6 +6,8 @@ import { Role } from "@/generated/prisma/client";
 import { AdminContentTable } from "@/components/admin/content-table";
 import { revalidatePath } from "next/cache";
 
+import { getTranslations } from "next-intl/server";
+
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
@@ -13,7 +15,7 @@ export async function generateMetadata() {
 }
 
 export default async function AdminContentPage() {
-	const t = await import("next-intl/server").then(m => m.getTranslations("admin"));
+	const t = await getTranslations("admin");
 	const session = await auth.api.getSession({ headers: await headers() });
 	if (!session?.user) redirect("/login?returnTo=/admin/content");
 

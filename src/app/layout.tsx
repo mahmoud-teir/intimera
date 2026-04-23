@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Geist, Amiri } from "next/font/google";
+import { Playfair_Display, Amiri } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { NextIntlClientProvider } from "next-intl";
 import { isRTL, type Locale } from "@/i18n/routing";
@@ -11,7 +11,11 @@ import { PostHogPageView } from "@/lib/analytics/events";
 import { ConsentBanner } from "@/components/analytics/consent-banner";
 import { cookies, headers } from "next/headers";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const playfair = Playfair_Display({ 
+	subsets: ["latin"], 
+	weight: ["400", "500", "600", "700", "800", "900"],
+	variable: "--font-sans" 
+});
 const amiri = Amiri({ 
 	subsets: ["arabic"], 
 	weight: ["400", "700"],
@@ -83,7 +87,7 @@ export default async function RootLayout({
 			dir={dir}
 			data-scroll-behavior="smooth"
 			suppressHydrationWarning
-			className={cn("font-sans", geist.variable, amiri.variable)}
+			className={cn("font-sans", playfair.variable, amiri.variable)}
 		>
 			<body className="min-h-dvh antialiased overflow-x-hidden" suppressHydrationWarning>
 				<NextIntlClientProvider messages={messages} locale={safeLocale}>

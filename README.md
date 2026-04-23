@@ -8,7 +8,7 @@
 
 <br/><br/>
 
-[![CI](https://img.shields.io/github/actions/workflow/status/your-org/intimera/ci.yml?branch=main&style=for-the-badge&logo=github&logoColor=white&label=CI&color=1a1a2e)](https://github.com/your-org/intimera/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/mahmoud-teir/intimera/ci.yml?branch=main&style=for-the-badge&logo=github&logoColor=white&label=CI&color=1a1a2e)](https://github.com/mahmoud-teir/intimera/actions)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178c6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
@@ -100,7 +100,7 @@ openai api key
 
 ```bash
 # 1. Clone
-git clone https://github.com/your-org/intimera.git && cd intimera
+git clone https://github.com/mahmoud-teir/intimera.git && cd intimera
 
 # 2. Install dependencies
 npm install
@@ -284,9 +284,9 @@ Access: `/admin/*` — requires `Role.ADMIN` (enforced server-side)
 
 <div align="center">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=your-username&show_icons=true&theme=dark&bg_color=0a0a0a&title_color=c4866c&icon_color=c4866c&text_color=a8a29e&border_color=292524&hide_border=false)
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=mahmoud-teir&show_icons=true&theme=dark&bg_color=0a0a0a&title_color=c4866c&icon_color=c4866c&text_color=a8a29e&border_color=292524&hide_border=false)
 
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=your-username&layout=compact&theme=dark&bg_color=0a0a0a&title_color=c4866c&text_color=a8a29e&border_color=292524)
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=mahmoud-teir&layout=compact&theme=dark&bg_color=0a0a0a&title_color=c4866c&text_color=a8a29e&border_color=292524)
 
 </div>
 

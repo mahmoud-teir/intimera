@@ -23,7 +23,7 @@ export async function generateMetadata() {
 
 export default function LandingPage() {
 	return (
-		<div className="flex flex-col min-h-screen">
+		<div className="flex flex-col min-h-screen overflow-x-hidden w-full relative">
 			<Header />
 			<main className="flex-grow">
 				<Hero />

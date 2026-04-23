@@ -95,7 +95,7 @@ export function Features() {
 			<section className="py-24 bg-sand-100/50 dark:bg-obsidian-dim">
 				<div className="max-w-6xl mx-auto px-6 lg:px-8">
 					<div className="bg-white dark:bg-sanctum rounded-[3.5rem] p-12 md:p-24 shadow-[0_40px_100px_rgba(28,20,16,0.04)] relative overflow-hidden">
-						<div className="absolute -bottom-20 -end-20 w-[500px] h-[500px] bg-terra-100/40 dark:bg-terra-500/5 rounded-full blur-[120px] pointer-events-none" />
+						<div className="absolute bottom-0 end-0 w-[500px] h-[500px] bg-terra-100/40 dark:bg-terra-500/5 rounded-full blur-[120px] pointer-events-none" />
 						<div className="relative z-10 max-w-2xl mx-auto text-center flex flex-col items-center">
 							<span className="text-xs tracking-[0.2em] rtl:tracking-normal text-[--text-faint] uppercase font-bold mb-8 block">
 								{t("teaser.eyebrow")}

@@ -18,8 +18,8 @@ export function Hero() {
 		>
 			{/* Ambient glows */}
 			<div className="absolute inset-0 pointer-events-none overflow-hidden">
-				<div className="absolute top-[-10%] start-[-10%] w-[45%] h-[45%] bg-terra-500/8 dark:bg-terra-500/5 rounded-full blur-[140px]" />
-				<div className="absolute bottom-[-10%] end-[-5%] w-[35%] h-[35%] bg-sage-500/6 dark:bg-sage-500/4 rounded-full blur-[120px]" />
+				<div className="absolute top-0 start-0 w-[45%] h-[45%] bg-terra-500/8 dark:bg-terra-500/5 rounded-full blur-[140px]" />
+				<div className="absolute bottom-0 end-0 w-[35%] h-[35%] bg-sage-500/6 dark:bg-sage-500/4 rounded-full blur-[120px]" />
 			</div>
 
 			<div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">

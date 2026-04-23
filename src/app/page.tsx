@@ -11,10 +11,10 @@ export async function generateMetadata() {
 	const brand = tCommon("brandName");
 	
 	return {
-		title: `${brand} | ${t("headline", { highlight: (chunks: string) => chunks })}`,
+		title: `${brand} | ${t.rich("headline", { highlight: (chunks) => chunks }) as string}`,
 		description: t("subtext", { brand }),
 		openGraph: {
-			title: `${brand} | ${t("headline", { highlight: (chunks: string) => chunks })}`,
+			title: `${brand} | ${t.rich("headline", { highlight: (chunks) => chunks }) as string}`,
 			description: t("subtext", { brand }),
 			type: "website",
 		},

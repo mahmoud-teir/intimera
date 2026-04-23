@@ -1,8 +1,10 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { db } from "@/lib/db";
+import { getBaseUrl } from "./utils";
 
 export const auth = betterAuth({
+	baseURL: getBaseUrl(),
 	database: prismaAdapter(db, {
 		provider: "postgresql",
 	}),
@@ -29,5 +31,8 @@ export const auth = betterAuth({
 			enabled: true,
 			maxAge: 5 * 60, // 5 minutes cache
 		},
+	},
+	advanced: {
+		trustProxy: true,
 	},
 });

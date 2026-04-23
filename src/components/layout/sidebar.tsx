@@ -54,7 +54,10 @@ export function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
 					fixed top-0 bottom-0 start-0 z-50 w-64 bg-sand-50 dark:bg-black border-e border-sand-200 dark:border-sand-800 
 					transition-transform duration-300 ease-in-out lg:static lg:translate-x-0 lg:rtl:translate-x-0
 					flex flex-col
-					${isOpen ? "translate-x-0" : "-translate-x-full rtl:translate-x-full"}
+					${isOpen 
+						? "translate-x-0 opacity-100" 
+						: "-translate-x-full rtl:translate-x-full opacity-0 lg:opacity-100 pointer-events-none lg:pointer-events-auto"
+					}
 				`}
 			>
 				{/* Header */}
@@ -65,8 +68,12 @@ export function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
 					<Button 
 						variant="ghost" 
 						size="icon" 
-						onClick={() => setIsOpen(false)}
-						className="lg:hidden text-sand-500"
+						onClick={(e) => {
+							e.stopPropagation();
+							setIsOpen(false);
+						}}
+						className="lg:hidden text-sand-500 hover:text-sand-900 dark:hover:text-sand-100 relative z-[60]"
+						aria-label="Close menu"
 					>
 						<X className="w-5 h-5" />
 					</Button>

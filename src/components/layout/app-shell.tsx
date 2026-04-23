@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Sidebar } from "./sidebar";
 import { Header } from "./header";
 
@@ -15,6 +15,11 @@ interface AppShellProps {
 
 export function AppShell({ user, children }: AppShellProps) {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+	
+	// Ensure sidebar is closed on route change/mount
+	useEffect(() => {
+		setIsSidebarOpen(false);
+	}, []);
 
 	return (
 		<div className="flex h-screen bg-sand-50 dark:bg-black overflow-hidden selection:bg-terra-500/30">

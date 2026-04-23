@@ -340,12 +340,12 @@
       "dashboard": "Dashboard"
     },
     "hero": {
-      "eyebrow": "The premier intimate wellness app for couples",
-      "headline": "Reignite your <highlight>connection</highlight>",
-      "subtext": "{brand} is a science-backed, private sanctuary to explore, understand, and elevate your intimate life together.",
-      "ctaStart": "Start Your Journey",
-      "ctaHow": "How it works",
-      "socialProof": "Join 2,000+ couples on their journey"
+      "eyebrow": "Your comprehensive platform for emotional connection and growth",
+      "headline": "Elevate your relationship to a <highlight>deeper level</highlight>",
+      "subtext": "{brand} is a safe digital sanctuary, merging science and empathy to help you understand each other and build a resilient, lasting bond with total privacy.",
+      "ctaStart": "Start Your Transformation",
+      "ctaHow": "How we help",
+      "socialProof": "Join 2,000+ couples building a better future together"
     },
     "faq": {
       "title": "Common Questions",
@@ -364,42 +364,41 @@
       "a7": "Absolutely. Your intimacy data and practice notes are highly protected. We use industry-standard encryption for all your personal information."
     },
     "features": {
-      "eyebrow": "Your Sanctuary",
-      "headline": "Everything you need to thrive",
+      "eyebrow": "Why Intimera?",
+      "headline": "Tools designed to strengthen your bond",
       "dailyCheckins": {
         "title": "Daily Check-ins",
-        "description": "Private mood and connection reflections that build emotional awareness over time."
+        "description": "A calm space to reflect on your feelings and connection, building deeper emotional awareness over time."
       },
       "aiAdvisor": {
-        "title": "AI Wellness Advisor",
-        "description": "An empathetic AI guide trained on relationship science. Ask anything in complete confidence."
+        "title": "AI Relationship Guide",
+        "description": "An empathetic companion trained on relationship science, always available to answer your questions with total privacy."
       },
       "privateExercises": {
-        "title": "Private Exercises",
-        "description": "Curated sensory and emotional practices designed to be explored safely within your retreat."
+        "title": "Interactive Exercises",
+        "description": "Practical and fun activities designed to be explored together inside your private digital sanctuary."
       },
       "teaser": {
-        "eyebrow": "Your Sanctuary",
-        "headline": "Space to reflect, <br></br>room to grow.",
-        "description": "The Shared Journal acts as a quiet space to document desires, express gratitude, and navigate challenges.",
+        "eyebrow": "Private Space",
+        "headline": "Space to reflect,<br></br>room to grow.",
+        "description": "The Shared Journal acts as a quiet sanctuary to document moments, express gratitude, and navigate challenges together as a team.",
         "cta": "Explore the Journal"
       },
       "stories": {
-        "title": "Stories from the Sanctuary",
-        "years": "Together {count} years",
+        "title": "Stories from the Heart",
         "story1": {
-          "quote": "{brand} gave us the vocabulary we didn't know we were missing. It feels like a gentle mediator.",
-          "name": "Elena & James",
+          "quote": "{brand} helped us find a common language to express our needs. It has become a bridge of understanding in our daily lives.",
+          "name": "Sarah & Ahmed",
           "years": "Together 4 years"
         },
         "story2": {
-          "quote": "The daily check-ins have become our favorite ritual. It's beautifully designed and perfectly private.",
-          "name": "Sarah & Marcus",
+          "quote": "The daily check-ins have become our favorite evening ritual. A beautiful app that respects privacy and brings us closer.",
+          "name": "Layla & Omar",
           "years": "Together 7 years"
         },
         "story3": {
-          "quote": "We appreciated the science-backed approach. It avoids the clinical feel of other relationship tools.",
-          "name": "Alex & Liam",
+          "quote": "We loved the science-based approach and innovative exercises. It avoids complexity and offers practical, elegant solutions.",
+          "name": "Yasmin & Khaled",
           "years": "Together 2 years"
         }
       }
@@ -411,7 +410,7 @@
         "essential": {
           "name": "Essential",
           "price": "Free",
-          "description": "Perfect for starting your journey together.",
+          "description": "The first step to discovering the power of connection.",
           "f1": "Basic daily check-ins",
           "f2": "Core wellness articles",
           "f3": "Individual profile",
@@ -422,8 +421,8 @@
           "name": "Premium",
           "price": "$12",
           "period": "/mo",
-          "description": "Everything you need for a deep, lasting connection.",
-          "f1": "AI Wellness Advisor access",
+          "description": "A complete experience designed to deepen emotional bonds.",
+          "f1": "AI Relationship Guide access",
           "f2": "Full library of exercises",
           "f3": "Advanced journaling prompts",
           "f4": "Shared connection dashboard",
@@ -435,7 +434,7 @@
           "name": "Couples",
           "price": "$14.99",
           "period": "/mo",
-          "description": "Connect with your partner for shared wellness journey.",
+          "description": "The perfect solution for partners to build a sustainable, mindful bond.",
           "f1": "Everything in Premium",
           "f2": "Link accounts with your partner",
           "f3": "Shared relationship timeline",

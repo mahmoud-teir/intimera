@@ -4,7 +4,8 @@ import { db } from "@/lib/db";
 import { getBaseUrl } from "./utils";
 
 export const auth = betterAuth({
-	baseURL: getBaseUrl(),
+	baseURL: process.env.BETTER_AUTH_URL || getBaseUrl(),
+	trustedOrigins: ["https://intimera.vercel.app", "https://www.intimera.app", "https://intimera.app", "http://localhost:3000"],
 	database: prismaAdapter(db, {
 		provider: "postgresql",
 	}),

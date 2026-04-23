@@ -480,34 +480,33 @@
       "s3Title": "المسؤولية",
       "s3Text": "توفر {brand} محتوى تعليمياً وليس بديلاً عن الاستشارة الطبية أو العلاجية المهنية."
     },
-      "contactPage": {
-        "title": "اتصل بنا",
-        "subtitle": "نحن هنا لمساعدتك في رحلتك.",
-        "formTitle": "أرسل لنا رسالة",
-        "nameLabel": "الاسم",
-        "emailLabel": "البريد الإلكتروني",
-        "subjectLabel": "الموضوع",
-        "messageLabel": "الرسالة",
-        "sendButton": "إرسال الرسالة",
-        "sending": "جاري الإرسال...",
-        "success": "تم إرسال الرسالة! سنرد عليك قريباً.",
-        "infoTitle": "طرق أخرى للتواصل",
-        "emailInfo": "الدعم: support@intimera.com",
-        "emailLabel": "البريد الإلكتروني",
-        "pressLabel": "الصحافة",
-        "pressInfo": "الصحافة: press@intimera.com",
-        "supportQuote": "نحن نؤمن بالتواصل الإنساني. يقرأ فريقنا كل رسالة ويرد شخصياً خلال ٤٨ ساعة."
-      },
-      "footer": {
-        "tagline": "ملاذك الخاص للارتباط. استكشف وتفهم وارتقِ بحياتك الحميمة معاً.",
-        "platform": "المنصة",
-        "legal": "القانونية",
-        "privacy": "سياسة الخصوصية",
-        "terms": "شروط الخدمة",
-        "contact": "اتصل بنا",
-        "rights": "© {year} {brand}. جميع الحقوق محفوظة.",
-        "love": "صُنع بعناية لارتباطكم"
-      }
+    "contactPage": {
+      "title": "اتصل بنا",
+      "subtitle": "نحن هنا لمساعدتك في رحلتك.",
+      "formTitle": "أرسل لنا رسالة",
+      "nameLabel": "الاسم",
+      "emailLabel": "البريد الإلكتروني",
+      "subjectLabel": "الموضوع",
+      "messageLabel": "الرسالة",
+      "sendButton": "إرسال الرسالة",
+      "sending": "جاري الإرسال...",
+      "success": "تم إرسال الرسالة! سنرد عليك قريباً.",
+      "infoTitle": "طرق أخرى للتواصل",
+      "emailInfo": "الدعم: support@intimera.com",
+      "pressLabel": "الصحافة",
+      "pressInfo": "الصحافة: press@intimera.com",
+      "supportQuote": "نحن نؤمن بالتواصل الإنساني. يقرأ فريقنا كل رسالة ويرد شخصياً خلال ٤٨ ساعة."
+    },
+    "footer": {
+      "tagline": "ملاذك الخاص للارتباط. استكشف وتفهم وارتقِ بحياتك الحميمة معاً.",
+      "platform": "المنصة",
+      "legal": "القانونية",
+      "privacy": "سياسة الخصوصية",
+      "terms": "شروط الخدمة",
+      "contact": "اتصل بنا",
+      "rights": "© {year} {brand}. جميع الحقوق محفوظة.",
+      "love": "صُنع بعناية لارتباطكم"
+    }
     },
   "checkIn": {
     "promptTitle": "تسجيل الوصول اليومي",

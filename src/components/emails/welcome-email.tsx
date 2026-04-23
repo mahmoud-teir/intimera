@@ -9,7 +9,7 @@ interface WelcomeEmailProps {
 
 export const WelcomeEmail: React.FC<WelcomeEmailProps> = ({
 	userName,
-	appName = "Intimera",
+	appName = process.env.NEXT_PUBLIC_APP_NAME || "Intimera",
 	loginUrl,
 }) => (
 	<Html>

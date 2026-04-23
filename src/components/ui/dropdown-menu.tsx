@@ -20,7 +20,7 @@ function DropdownMenuTrigger({ asChild, ...props }: MenuPrimitive.Trigger.Props 
     return (
       <MenuPrimitive.Trigger
         data-slot="dropdown-menu-trigger"
-        render={children}
+        render={children as any}
         {...rest}
       />
     );
@@ -109,7 +109,7 @@ function DropdownMenuItem({
     const { children, ...rest } = commonProps;
     return (
       <MenuPrimitive.Item
-        render={children}
+        render={children as any}
         {...rest}
       />
     )

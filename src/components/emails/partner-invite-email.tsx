@@ -9,7 +9,7 @@ interface PartnerInviteEmailProps {
 
 export const PartnerInviteEmail: React.FC<PartnerInviteEmailProps> = ({
 	inviterName,
-	appName = "Intimera",
+	appName = process.env.NEXT_PUBLIC_APP_NAME || "Intimera",
 	inviteUrl,
 }) => (
 	<Html>

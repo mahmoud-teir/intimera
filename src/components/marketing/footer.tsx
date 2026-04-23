@@ -2,10 +2,12 @@
 
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import { Logo } from "@/components/brand/logo";
 
 export function Footer() {
 	const t = useTranslations("marketing.footer");
 	const tNav = useTranslations("marketing.nav");
+	const tCommon = useTranslations("common");
 
 	return (
 		<footer className="bg-sand-100/50 dark:bg-obsidian-dim py-32 relative overflow-hidden">
@@ -16,8 +18,8 @@ export function Footer() {
 				<div className="grid grid-cols-1 md:grid-cols-4 gap-16 md:gap-12">
 					{/* Brand */}
 					<div className="md:col-span-2">
-						<Link href="/" className="text-2xl font-light tracking-[0.1em] text-[--text-base] mb-8 block">
-							Intimera<span className="text-terra-500">.</span>
+						<Link href="/" className="mb-8 block transition-transform hover:scale-[1.02] active:scale-[0.98] origin-left rtl:origin-right">
+							<Logo size="lg" />
 						</Link>
 						<p className="text-lg text-[--text-muted] leading-relaxed font-light max-w-sm">
 							{t("tagline")}
@@ -67,7 +69,10 @@ export function Footer() {
 
 				<div className="mt-24 pt-12 border-t border-sand-200 dark:border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
 					<p className="text-sm text-[--text-faint] font-light tracking-wide">
-						{t("rights", { year: new Date().getFullYear() })}
+						{t("rights", { 
+							year: new Date().getFullYear(),
+							brand: tCommon("brandName")
+						})}
 					</p>
 					<p className="text-sm text-[--text-faint] font-light tracking-wide flex items-center gap-2">
 						<span className="w-1 h-1 rounded-full bg-terra-400" />

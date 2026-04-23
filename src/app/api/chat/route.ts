@@ -1,9 +1,10 @@
-import { openai } from "@ai-sdk/openai";
+import { google } from "@ai-sdk/google";
 import { streamText } from "ai";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { db } from "@/lib/db";
 import { findSimilarContent, buildAdvisorPrompt, MODELS } from "@/lib/ai";
+import { getTranslations } from "next-intl/server";
 import { Limiters, rateLimitResponse } from "@/lib/utils/rate-limit";
 import { encrypt } from "@/lib/utils/crypto";
 import { Role } from "@/generated/prisma/client";
@@ -51,7 +52,9 @@ export async function POST(req: Request) {
 		const relevantContent = await findSimilarContent(latestMessage, 3);
 		
 		// 3. Build System Prompt with retrieved context
-		const systemPrompt = buildAdvisorPrompt(relevantContent);
+		const tCommon = await getTranslations("common");
+		const brandName = tCommon("brandName");
+		const systemPrompt = buildAdvisorPrompt(relevantContent, brandName);
 
 		// Save the User's message to the DB (encrypted)
 		if (conversationId) {
@@ -66,7 +69,7 @@ export async function POST(req: Request) {
 
 		// 4. Call OpenAI with streaming
 		const result = await streamText({
-			model: openai(MODELS.ADVISOR),
+			model: google(MODELS.ADVISOR),
 			system: systemPrompt,
 			messages,
 			onFinish: async ({ text }) => {

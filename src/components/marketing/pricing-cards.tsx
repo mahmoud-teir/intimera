@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Check, Loader2 } from "lucide-react";
 import { createCheckoutSession } from "@/actions/stripe";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface PricingCardsProps {
 	isAuthenticated: boolean;
@@ -33,55 +34,58 @@ export function PricingCards({ isAuthenticated }: PricingCardsProps) {
 		}
 	};
 
+	const t = useTranslations("marketing.pricing");
+	const tCommon = useTranslations("common");
+	const brand = tCommon("brandName");
+
 	const tiers = [
 		{
 			id: "FREE",
-			name: "Basic",
-			price: "$0",
-			description: "Essential tools for personal growth.",
+			name: t("plans.essential.name"),
+			price: t("plans.essential.price"),
+			description: t("plans.essential.description"),
 			features: [
-				"Access to basic wellness library",
-				"Read-only community access",
-				"Standard relationship assessments",
+				t("plans.essential.f1"),
+				t("plans.essential.f2"),
+				t("plans.essential.f3"),
+				t("plans.essential.f4"),
 			],
-			buttonText: isAuthenticated ? "Current Plan" : "Get Started for Free",
+			buttonText: isAuthenticated ? (tCommon("dashboard" as any) || "Dashboard") : t("plans.essential.cta"),
 			action: () => isAuthenticated ? router.push("/dashboard") : router.push("/login"),
 			priceId: null,
 			popular: false,
 		},
 		{
 			id: "PREMIUM",
-			name: "Premium",
-			price: "$9.99",
-			period: "/month",
-			description: "Full access to advanced features and community participation.",
+			name: t("plans.premium.name"),
+			price: t("plans.premium.price"),
+			period: t("plans.premium.period"),
+			description: t("plans.premium.description"),
 			features: [
-				"Everything in Basic",
-				"Full Community Forum posting & replying",
-				"Unlimited AI Wellness Advisor chats",
-				"Advanced personalized insights",
-				"Premium guided exercises",
+				t("plans.premium.f1"),
+				t("plans.premium.f2"),
+				t("plans.premium.f3"),
+				t("plans.premium.f4"),
+				t("plans.premium.f5"),
 			],
-			buttonText: "Upgrade to Premium",
-			// Replace with actual price ID in production
+			buttonText: t("plans.premium.cta"),
 			priceId: process.env.NEXT_PUBLIC_STRIPE_PREMIUM_PRICE_ID || "price_premium_placeholder",
 			popular: true,
 		},
 		{
 			id: "COUPLES",
-			name: "Couples",
-			price: "$14.99",
-			period: "/month",
-			description: "Connect with your partner for shared wellness journey.",
+			name: t("plans.couples.name"),
+			price: t("plans.couples.price"),
+			period: t("plans.couples.period"),
+			description: t("plans.couples.description"),
 			features: [
-				"Everything in Premium",
-				"Link accounts with your partner",
-				"Shared relationship timeline",
-				"Couples-specific assessments",
-				"Joint exercises and prompts",
+				t("plans.couples.f1"),
+				t("plans.couples.f2"),
+				t("plans.couples.f3"),
+				t("plans.couples.f4"),
+				t("plans.couples.f5"),
 			],
-			buttonText: "Upgrade to Couples",
-			// Replace with actual price ID in production
+			buttonText: t("plans.couples.cta"),
 			priceId: process.env.NEXT_PUBLIC_STRIPE_COUPLES_PRICE_ID || "price_couples_placeholder",
 			popular: false,
 		}

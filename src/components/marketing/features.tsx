@@ -1,39 +1,43 @@
 "use client";
 
-import { MessageCircle, BookOpen, Lock, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { useTranslations, useLocale } from "next-intl";
 import { isRTL, type Locale } from "@/i18n/routing";
+import { DailyCheckinsIcon, AIAdvisorIcon, PrivateExercisesIcon } from "./feature-icons";
 
 export function Features() {
 	const t = useTranslations("marketing.features");
+	const tCommon = useTranslations("common");
 	const locale = useLocale();
 	const rtl = isRTL(locale as Locale);
+	const brand = tCommon("brandName");
 
 	const features = [
 		{
-			icon: MessageCircle,
+			icon: DailyCheckinsIcon,
 			color: "terra",
 			title: t("dailyCheckins.title"),
 			description: t("dailyCheckins.description"),
 		},
 		{
-			icon: BookOpen,
+			icon: AIAdvisorIcon,
 			color: "amber",
 			title: t("aiAdvisor.title"),
 			description: t("aiAdvisor.description"),
 		},
 		{
-			icon: Lock,
+			icon: PrivateExercisesIcon,
 			color: "sage",
 			title: t("privateExercises.title"),
 			description: t("privateExercises.description"),
 		},
 	];
 
+
 	const testimonials = [
 		{
-			quote: t("stories.story1.quote"),
+			quote: t("stories.story1.quote", { brand }),
 			name: t("stories.story1.name"),
 			years: t("stories.story1.years"),
 			initials: "E&J",

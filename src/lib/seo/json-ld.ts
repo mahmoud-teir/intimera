@@ -16,7 +16,7 @@ interface ArticleSchemaOptions {
 }
 
 /** Schema.org Article structured data for content library articles. */
-export function articleSchema(opts: ArticleSchemaOptions) {
+export function articleSchema(opts: ArticleSchemaOptions, brand: string = process.env.NEXT_PUBLIC_APP_NAME || "Intimera") {
 	return {
 		"@context": "https://schema.org",
 		"@type": "Article",
@@ -29,7 +29,7 @@ export function articleSchema(opts: ArticleSchemaOptions) {
 		articleSection: opts.category,
 		publisher: {
 			"@type": "Organization",
-			name: "Intimera",
+			name: brand,
 			url: BASE_URL,
 			logo: {
 				"@type": "ImageObject",
@@ -38,17 +38,17 @@ export function articleSchema(opts: ArticleSchemaOptions) {
 		},
 		author: {
 			"@type": "Organization",
-			name: "Intimera Editorial Team",
+			name: `${brand} Editorial Team`,
 		},
 	};
 }
 
 /** Schema.org WebSite for the root/homepage. */
-export function websiteSchema() {
+export function websiteSchema(brand: string = process.env.NEXT_PUBLIC_APP_NAME || "Intimera") {
 	return {
 		"@context": "https://schema.org",
 		"@type": "WebSite",
-		name: "Intimera",
+		name: brand,
 		url: BASE_URL,
 		description: "A science-backed, AI-enhanced intimate wellness platform for couples.",
 		potentialAction: {

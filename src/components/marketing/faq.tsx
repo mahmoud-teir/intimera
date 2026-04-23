@@ -4,27 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useId } from "react";
 import { ChevronDown } from "lucide-react";
 
-const faqs = [
-	{
-		question: "How secure is the platform?",
-		answer: "Your privacy is our highest priority. All data, especially your practice exercises and communication with your partner, is encrypted. We do not sell your data.",
-	},
-	{
-		question: "Can I use Intimera alone, or do I need my partner?",
-		answer: "The platform is designed primarily for couples to connect, but individuals can still benefit significantly from the educational library and solo self-discovery exercises.",
-	},
-	{
-		question: "Is the content created by professionals?",
-		answer: "Yes, our content is authored and reviewed by licensed therapists, sex educators, and psychologists to ensure it is science-backed and safe.",
-	},
-	{
-		question: "How do the shared exercises work?",
-		answer: "One partner initiates an exercise (e.g., a questionnaire about desires), answers their part privately, and invites the other. Answers are only revealed when both partners have completed it, creating a safe, no-pressure environment.",
-	},
-];
+
 
 function FAQItem({ faq, index, isOpen, onToggle }: {
-	faq: typeof faqs[0];
+	faq: { question: string; answer: string };
 	index: number;
 	isOpen: boolean;
 	onToggle: () => void;
@@ -48,11 +31,11 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
 					onClick={onToggle}
 					aria-expanded={isOpen}
 					aria-controls={panelId}
-					className="w-full px-6 py-5 flex items-center justify-between text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-terra-500 rounded-2xl"
+					className="w-full px-6 py-5 flex items-center justify-between text-start focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-terra-500 rounded-2xl"
 				>
 					<span className="text-lg font-medium text-sand-800 dark:text-sand-100">{faq.question}</span>
 					<ChevronDown 
-						className={`w-5 h-5 text-sand-500 transition-transform duration-300 flex-shrink-0 ml-4 ${isOpen ? "rotate-180" : ""}`}
+						className={`w-5 h-5 text-sand-500 transition-transform duration-300 flex-shrink-0 ms-4 ${isOpen ? "rotate-180" : ""}`}
 						aria-hidden="true"
 					/>
 				</button>
@@ -78,8 +61,20 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
 	);
 }
 
+import { useTranslations } from "next-intl";
+
 export function FAQ() {
 	const [openIndex, setOpenIndex] = useState<number | null>(null);
+	const t = useTranslations("marketing.faq");
+	const tCommon = useTranslations("common");
+	const brand = tCommon("brandName");
+
+	const faqData = [
+		{ question: t("q1"), answer: t("a1") },
+		{ question: t("q2", { brand }), answer: t("a2") },
+		{ question: t("q3"), answer: t("a3") },
+		{ question: t("q4"), answer: t("a4") },
+	];
 
 	return (
 		<section className="py-24 bg-white dark:bg-obsidian/30 relative" aria-labelledby="faq-heading">
@@ -93,12 +88,12 @@ export function FAQ() {
 						transition={{ duration: 0.6 }}
 						className="text-3xl md:text-5xl font-light tracking-tight text-sand-900 dark:text-sand-100 mb-4"
 					>
-						Common Questions
+						{t("title")}
 					</motion.h2>
 				</div>
 
 				<dl className="max-w-3xl mx-auto space-y-4">
-					{faqs.map((faq, index) => (
+					{faqData.map((faq, index) => (
 						<FAQItem
 							key={index}
 							faq={faq}

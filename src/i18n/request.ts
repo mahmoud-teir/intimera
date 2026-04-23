@@ -12,12 +12,12 @@ export default getRequestConfig(async ({ requestLocale }) => {
 	// Fallback: check cookie (e.g. direct navigation without locale prefix)
 	if (!locale) {
 		const cookieStore = await cookies();
-		locale = cookieStore.get("NEXT_LOCALE")?.value;
+		locale = cookieStore.get("NEXT_LOCALE")?.value ?? null;
 	}
 
 	// Last fallback: use what next-intl resolved (usually "en")
 	if (!locale) {
-		locale = await requestLocale;
+		locale = (await requestLocale) ?? null;
 	}
 
 	// Ensure the locale is valid, fall back to default

@@ -5,8 +5,10 @@ import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata() {
 	const t = await getTranslations("community");
+	const tCommon = await getTranslations("common");
+	const brand = tCommon("brandName");
 	return {
-		title: `${t("title")} | Intimera`,
+		title: `${t("title")} | ${brand}`,
 		description: t("description"),
 	};
 }

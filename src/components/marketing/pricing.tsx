@@ -87,7 +87,7 @@ export function Pricing() {
 									: "bg-white dark:bg-white/5 shadow-[0_20px_60px_rgba(28,20,16,0.03)]"
 							}`}>
 								{plan.highlighted && (
-									<div className="absolute top-10 right-10">
+									<div className="absolute top-10 right-10 rtl:right-auto rtl:left-10">
 										<span className="bg-terra-500 text-white text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full">
 											{t("plans.premium.popular" as any) || "POPULAR"}
 										</span>
@@ -103,7 +103,7 @@ export function Pricing() {
 									<div className="mt-8 flex items-baseline">
 										<span className={`text-6xl font-light tracking-tighter ${plan.highlighted ? "text-white" : "text-[--text-base]"}`}>{plan.price}</span>
 										{plan.period && (
-											<span className={`ml-2 text-xl font-light ${plan.highlighted ? "text-sand-400" : "text-[--text-faint]"}`}>{plan.period}</span>
+											<span className={`ms-2 text-xl font-light ${plan.highlighted ? "text-sand-400" : "text-[--text-faint]"}`}>{plan.period}</span>
 										)}
 									</div>
 								</div>
@@ -112,7 +112,7 @@ export function Pricing() {
 									<ul className="space-y-5">
 										{plan.features.map((feature) => (
 											<li key={feature} className="flex items-start">
-												<div className={`mt-1.5 p-0.5 rounded-full mr-4 shrink-0 ${plan.highlighted ? "bg-terra-500" : "bg-sage-100 dark:bg-sage-500/20"}`}>
+												<div className={`mt-1.5 p-0.5 rounded-full me-4 shrink-0 ${plan.highlighted ? "bg-terra-500" : "bg-sage-100 dark:bg-sage-500/20"}`}>
 													<Check className={`h-3.5 w-3.5 ${plan.highlighted ? "text-white" : "text-sage-600 dark:text-sage-400"}`} />
 												</div>
 												<span className={`text-lg font-light ${plan.highlighted ? "text-sand-200" : "text-[--text-muted]"}`}>

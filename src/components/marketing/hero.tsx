@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 
 export function Hero() {
 	const t = useTranslations("marketing.hero");
+	const tCommon = useTranslations("common");
 
 	return (
 		<section
@@ -39,7 +40,7 @@ export function Hero() {
 
 				{/* Subtext */}
 				<p className="text-xl md:text-2xl text-[--text-muted] font-light leading-relaxed max-w-2xl mx-auto mb-16">
-					{t("subtext")}
+					{t("subtext", { brand: tCommon("brandName") })}
 				</p>
 
 				{/* CTAs */}

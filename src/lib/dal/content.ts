@@ -22,6 +22,7 @@ export type ContentWithTranslation = {
 	slug: string;
 	tier: SubscriptionTier;
 	difficulty: string;
+	coverImage: string | null;
 	readingTimeMin: number;
 	publishedAt: Date | null;
 	category: {
@@ -62,6 +63,7 @@ function normalizeContent(content: any, userTier: SubscriptionTier): ContentWith
 		slug: content.slug,
 		tier: content.tier,
 		difficulty: content.difficulty,
+		coverImage: content.coverImage,
 		readingTimeMin: content.readingTimeMin,
 		publishedAt: content.publishedAt,
 		category: {

@@ -135,7 +135,7 @@ async function main() {
 			tier: SubscriptionTier.FREE,
 			status: ContentStatus.PUBLISHED,
 			difficulty: Difficulty.ADVANCED,
-			relationshipStage: RelationshipStage.LONG_TERM,
+			relationshipStage: RelationshipStage.ESTABLISHED,
 			readingTimeMin: 12,
 			coverImage: "/content/libido-mismatches.png",
 			translations: {
@@ -213,7 +213,7 @@ async function main() {
 			tier: SubscriptionTier.PREMIUM,
 			status: ContentStatus.PUBLISHED,
 			difficulty: Difficulty.ADVANCED,
-			relationshipStage: RelationshipStage.LONG_TERM,
+			relationshipStage: RelationshipStage.ESTABLISHED,
 			readingTimeMin: 10,
 			coverImage: "/content/vocal-communication.png",
 			translations: {
@@ -265,7 +265,7 @@ async function main() {
 			tier: SubscriptionTier.PREMIUM,
 			status: ContentStatus.PUBLISHED,
 			difficulty: Difficulty.ADVANCED,
-			relationshipStage: RelationshipStage.LONG_TERM,
+			relationshipStage: RelationshipStage.ESTABLISHED,
 			readingTimeMin: 14,
 			coverImage: "/content/mastering-kegels.png",
 			translations: {
@@ -457,7 +457,7 @@ async function main() {
 			tier: SubscriptionTier.PREMIUM,
 			status: ContentStatus.PUBLISHED,
 			difficulty: Difficulty.ADVANCED,
-			relationshipStage: RelationshipStage.LONG_TERM,
+			relationshipStage: RelationshipStage.ESTABLISHED,
 			durationMin: 20,
 			title: "Sharing a Fantasy",
 			description: "A safe framework to verbally explore erotic imagination together.",

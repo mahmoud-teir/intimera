@@ -20,8 +20,8 @@ export function getStripe(): Stripe {
 	_stripe = new Stripe(key, {
 		apiVersion: "2026-03-25.dahlia",
 		appInfo: {
-			name: "Intimera",
-			url: "https://intimera.app",
+			name: process.env.NEXT_PUBLIC_APP_NAME || "Intimera",
+			url: process.env.NEXT_PUBLIC_APP_URL || "https://intimera.app",
 		},
 	});
 

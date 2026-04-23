@@ -31,7 +31,7 @@ describe('AI Lib', () => {
 		it('should include fallback message when no context is provided', () => {
 			const prompt = buildAdvisorPrompt([]);
 			expect(prompt).toContain('No relevant library articles found');
-			expect(prompt).toContain('You are the Intimera AI Relationship Advisor');
+			expect(prompt).toContain(`You are the ${process.env.NEXT_PUBLIC_APP_NAME || "Intimera"} AI Relationship Advisor`);
 		});
 
 		it('should include article title and summary in the prompt', () => {

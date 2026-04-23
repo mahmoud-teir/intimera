@@ -25,6 +25,7 @@ export default async function EditContentPage({ params }: EditContentPageProps) 
 		select: {
 			id: true,
 			name: true,
+			slug: true,
 		},
 		orderBy: {
 			name: "asc",

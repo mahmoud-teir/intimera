@@ -13,15 +13,17 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 	const resolvedParams = await params;
 	const result = await getPostById(resolvedParams.id);
 	const t = await getTranslations("community");
+	const tCommon = await getTranslations("common");
+	const brand = tCommon("brandName");
 	
 	if (!result.success || !result.post) {
 		return {
-			title: `${t("postNotFound")} | Intimera Community`,
+			title: `${t("postNotFound")} | ${brand} Community`,
 		};
 	}
 
 	return {
-		title: `${result.post.title} | Intimera Community`,
+		title: `${result.post.title} | ${brand} Community`,
 		description: result.post.body.substring(0, 150) + "...",
 	};
 }

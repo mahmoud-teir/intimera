@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import { CheckCircle, XCircle, Clock, User, Hash, FileText, ChevronRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface ModerationPost {
 	id: string;
@@ -20,6 +21,7 @@ interface ModerationQueueProps {
 }
 
 export function ModerationQueue({ posts, onApprove, onReject }: ModerationQueueProps) {
+	const t = useTranslations("admin");
 	const [isPending, startTransition] = useTransition();
 
 	if (posts.length === 0) {
@@ -28,7 +30,7 @@ export function ModerationQueue({ posts, onApprove, onReject }: ModerationQueueP
 				<div className="w-20 h-20 bg-sage-500/5 rounded-full flex items-center justify-center mx-auto mb-6">
 					<CheckCircle className="w-8 h-8 text-sage-500/40" />
 				</div>
-				<p className="text-xl font-light text-foreground/40 italic">The sanctuary is serene. No pending flows.</p>
+				<p className="text-xl font-light text-foreground/40 italic">{t("moderationPage.noPendingFlows")}</p>
 			</div>
 		);
 	}
@@ -70,7 +72,7 @@ export function ModerationQueue({ posts, onApprove, onReject }: ModerationQueueP
 									<User className="w-4 h-4 text-terra-500/40" />
 								</div>
 								<div>
-									<p className="text-[9px] font-bold text-foreground/20 uppercase tracking-widest">Architect</p>
+									<p className="text-[9px] font-bold text-foreground/20 uppercase tracking-widest">{t("moderationPage.architect")}</p>
 									<p className="text-xs font-semibold text-foreground/80">{post.authorName}</p>
 								</div>
 							</div>
@@ -80,7 +82,7 @@ export function ModerationQueue({ posts, onApprove, onReject }: ModerationQueueP
 										<Hash className="w-4 h-4 text-terra-500/40" />
 									</div>
 									<div>
-										<p className="text-[9px] font-bold text-foreground/20 uppercase tracking-widest">Spirit ID</p>
+										<p className="text-[9px] font-bold text-foreground/20 uppercase tracking-widest">{t("moderationPage.spiritId")}</p>
 										<p className="text-xs font-semibold text-foreground/80">{post.authorEmail}</p>
 									</div>
 								</div>
@@ -96,7 +98,7 @@ export function ModerationQueue({ posts, onApprove, onReject }: ModerationQueueP
 							className="flex-1 xl:w-full flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-sage-500 text-white font-bold text-[10px] uppercase tracking-[0.2em] hover:scale-105 active:scale-95 transition-all shadow-xl shadow-sage-500/20 disabled:opacity-50"
 						>
 							<CheckCircle className="w-4 h-4" />
-							Approve Flow
+							{t("moderationPage.approveFlow")}
 						</button>
 						<button
 							disabled={isPending}
@@ -104,7 +106,7 @@ export function ModerationQueue({ posts, onApprove, onReject }: ModerationQueueP
 							className="flex-1 xl:w-full flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-background/50 text-foreground/40 border border-border/5 font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-terra-500/10 hover:text-terra-500 hover:border-terra-500/20 transition-all disabled:opacity-50"
 						>
 							<XCircle className="w-4 h-4" />
-							Reject Flow
+							{t("moderationPage.rejectFlow")}
 						</button>
 					</div>
 				</div>

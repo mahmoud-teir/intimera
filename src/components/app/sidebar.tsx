@@ -11,6 +11,7 @@ import {
 	Settings,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 const navigation = [
 	{ name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -23,6 +24,8 @@ const navigation = [
 
 export function Sidebar() {
 	const pathname = usePathname();
+	const tCommon = useTranslations("common");
+	const tNav = useTranslations("nav");
 
 	return (
 		<aside className="fixed inset-y-0 left-0 z-40 hidden w-64 bg-[--bg-surface]/95 backdrop-blur-xl border-r border-sand-100 dark:border-white/5 md:flex flex-col h-screen">
@@ -30,7 +33,7 @@ export function Sidebar() {
 			<div className="h-16 flex items-center px-8 border-b border-sand-100 dark:border-white/5">
 				<Link href="/dashboard" className="flex items-center">
 					<span className="text-xl font-light tracking-widest text-[--text-base]">
-						Intimera<span className="text-terra-500">.</span>
+						{tCommon("brandName")}<span className="text-terra-500">.</span>
 					</span>
 				</Link>
 			</div>

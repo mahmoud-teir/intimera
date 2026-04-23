@@ -5,7 +5,7 @@ export const runtime = "edge";
 
 export async function GET(request: NextRequest) {
 	const { searchParams } = new URL(request.url);
-	const title = searchParams.get("title") || "Intimera";
+	const title = searchParams.get("title") || process.env.NEXT_PUBLIC_APP_NAME || "Intimera";
 	const description = searchParams.get("description") || "Your Private Wellness Sanctuary";
 	const category = searchParams.get("category") || "";
 
@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
 						✦
 					</div>
 					<span style={{ color: "#f5f5f4", fontSize: "24px", fontWeight: "600", letterSpacing: "-0.02em" }}>
-						Intimera
+						{process.env.NEXT_PUBLIC_APP_NAME || "Intimera"}
 					</span>
 					{category && (
 						<span
@@ -125,7 +125,7 @@ export async function GET(request: NextRequest) {
 						justifyContent: "space-between",
 					}}
 				>
-					<span style={{ color: "#57534e", fontSize: "16px" }}>intimera.app</span>
+					<span style={{ color: "#57534e", fontSize: "16px" }}>{process.env.NEXT_PUBLIC_APP_URL ? new URL(process.env.NEXT_PUBLIC_APP_URL).host : "intimera.app"}</span>
 					<div
 						style={{
 							height: "2px",

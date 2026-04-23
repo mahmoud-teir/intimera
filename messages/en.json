@@ -1,5 +1,6 @@
 {
   "common": {
+    "brandName": "Intimera",
     "loading": "Loading...",
     "error": "Something went wrong. Please try again.",
     "save": "Save",
@@ -168,7 +169,7 @@
     "exercise": "Exercise",
     "min": "{count} min",
     "premiumTitle": "Premium Exercise",
-    "premiumDescription": "This exercise is reserved for Intimera Premium members. Upgrade your plan to access this and hundreds of other interactive guides.",
+    "premiumDescription": "This exercise is reserved for {brand} Premium members. Upgrade your plan to access this and hundreds of other interactive guides.",
     "constructionTitle": "Exercise Under Construction",
     "constructionDescription": "This exercise doesn't have any steps yet. Please check back later.",
     "backToCatalog": "Back to Catalog",
@@ -220,7 +221,9 @@
     "recent": "Recent",
     "newPost": "New Post",
     "discussions": "Discussions",
-    "metaTitle": "{topic} Discussions | Intimera Community",
+    "metaTitle": "{topic} Discussions | {brand} Community",
+    "metaDescription": "Join the discussion about {topic} in the {brand} community.",
+    "postNotFound": "Post not found",
     "postCount": "{count} posts",
     "allTopics": "All Topics",
     "topic_communication": "Communication",
@@ -262,8 +265,8 @@
     "voteControls": "Vote controls. Current score: {score}",
     "createTitle": "Create a New Post",
     "createDescription": "Share your thoughts, ask a question, or start a discussion with the community.",
-    "createMetaTitle": "Create New Post | Intimera Community",
-    "createMetaDescription": "Start a new discussion in the Intimera community.",
+    "createMetaTitle": "Create New Post | {brand} Community",
+    "createMetaDescription": "Start a new discussion in the {brand} community.",
     "createError": "Failed to create post. Please try again."
   },
   "settings": {
@@ -299,19 +302,19 @@
     "privacyHelp": "Your data is yours. We believe in complete transparency and control over your personal information. Use the tools below to export your data or delete your account.",
     "subscriptionTitle": "Your Subscription",
     "subscriptionSettingsTitle": "Subscription & Billing",
-    "subscriptionHelp": "Manage your Intimera subscription plan. Premium unlocks all exercises, relationship guides, and the AI advisor.",
+    "subscriptionHelp": "Manage your {brand} subscription plan. Premium unlocks all exercises, relationship guides, and the AI advisor.",
     "currentPlan": "Current Plan",
     "manageBilling": "Manage Billing",
     "coupleSettingsTitle": "Couple Settings",
     "coupleSubtitle": "Manage your connection and invitation links.",
     "languageTitle": "Language Preferences",
-    "languageDescription": "Choose your preferred language for the Intimera interface."
+    "languageDescription": "Choose your preferred language for the {brand} interface."
   },
   "subscription": {
-    "freePlan": "Intimera Free",
-    "premiumPlan": "Intimera Premium",
-    "couplesPlan": "Intimera Couples",
-    "premiumBenefit": "You have full access to all Intimera features. Thank you for investing in your relationship.",
+    "freePlan": "{brand} Free",
+    "premiumPlan": "{brand} Premium",
+    "couplesPlan": "{brand} Couples",
+    "premiumBenefit": "You have full access to all {brand} features. Thank you for investing in your relationship.",
     "freeBenefit": "You are currently on the free plan with limited access to exercises and the library.",
     "upgradeButton": "Upgrade to Premium",
     "manageButton": "Manage Billing",
@@ -339,10 +342,26 @@
     "hero": {
       "eyebrow": "The premier intimate wellness app for couples",
       "headline": "Reignite your <highlight>connection</highlight>",
-      "subtext": "A science-backed, private sanctuary to explore, understand, and elevate your intimate life together.",
+      "subtext": "{brand} is a science-backed, private sanctuary to explore, understand, and elevate your intimate life together.",
       "ctaStart": "Start Your Journey",
       "ctaHow": "How it works",
       "socialProof": "Join 2,000+ couples on their journey"
+    },
+    "faq": {
+      "title": "Common Questions",
+      "q1": "How secure is the platform?",
+      "a1": "Your privacy is our highest priority. All data, especially your practice exercises and communication with your partner, is encrypted. We do not sell your data.",
+      "q2": "Can I use {brand} alone, or do I need my partner?",
+      "a2": "The platform is designed primarily for couples to connect, but individuals can still benefit significantly from the educational library and solo self-discovery exercises.",
+      "q3": "Is the content created by professionals?",
+      "a3": "Yes, our content is authored and reviewed by licensed therapists, sex educators, and psychologists to ensure it is science-backed and safe.",
+      "a4": "One partner initiates an exercise (e.g., a questionnaire about desires), answers their part privately, and invites the other. Answers are only revealed when both partners have completed it, creating a safe, no-pressure environment.",
+      "q5": "Can I cancel my subscription at any time?",
+      "a5": "Yes, you can cancel your subscription at any time from your account settings. You'll retain access to premium features until the end of your current billing cycle.",
+      "q6": "How does the Couples plan work?",
+      "a6": "The Couples plan allows you to link two {brand} accounts. Both users get full Premium access, plus exclusive features like shared timelines, dual assessments, and joint exercises.",
+      "q7": "Is my data private and secure?",
+      "a7": "Absolutely. Your intimacy data and practice notes are highly protected. We use industry-standard encryption for all your personal information."
     },
     "features": {
       "eyebrow": "Your Sanctuary",
@@ -369,7 +388,7 @@
         "title": "Stories from the Sanctuary",
         "years": "Together {count} years",
         "story1": {
-          "quote": "Intimera gave us the vocabulary we didn't know we were missing. It feels like a gentle mediator.",
+          "quote": "{brand} gave us the vocabulary we didn't know we were missing. It feels like a gentle mediator.",
           "name": "Elena & James",
           "years": "Together 4 years"
         },
@@ -411,20 +430,87 @@
           "f5": "Priority support",
           "cta": "Get Started",
           "popular": "POPULAR"
+        },
+        "couples": {
+          "name": "Couples",
+          "price": "$14.99",
+          "period": "/mo",
+          "description": "Connect with your partner for shared wellness journey.",
+          "f1": "Everything in Premium",
+          "f2": "Link accounts with your partner",
+          "f3": "Shared relationship timeline",
+          "f4": "Couples-specific assessments",
+          "f5": "Joint exercises and prompts",
+          "cta": "Upgrade to Couples"
         }
       }
     },
-    "footer": {
-      "tagline": "Reigniting connection through science, understanding, and private exploration.",
-      "platform": "Platform",
-      "legal": "Legal",
-      "privacy": "Privacy Policy",
-      "terms": "Terms of Service",
-      "contact": "Contact",
-      "rights": "© {year} Intimera. All rights reserved.",
-      "love": "Made with love, not war ♥"
-    }
-  },
+    "about": {
+      "title": "About {brand}",
+      "subtitle": "Your Private Sanctuary for Connection",
+      "missionTitle": "Our Mission",
+      "missionText": "{brand} was founded with a single purpose: to provide couples with a safe, science-backed, and private space to explore and deepen their connection. We believe that intimate wellness is a fundamental pillar of a healthy relationship.",
+      "valuesTitle": "Our Values",
+      "v1Title": "Privacy First",
+      "v1Text": "Your most intimate moments deserve the highest level of security. We use state-of-the-art encryption to ensure your data remains yours alone.",
+      "v2Title": "Science-Backed",
+      "v2Text": "Our content and exercises are developed in collaboration with relationship experts and psychologists.",
+      "v3Title": "Empathy-Driven",
+      "v3Text": "We design with care, understanding the vulnerability involved in the journey of connection.",
+      "approachTitle": "Our Approach",
+      "approachText": "By combining artificial intelligence with proven relationship psychology, we provide personalized guidance that adapts to your unique dynamic."
+    },
+    "privacyPage": {
+      "title": "Privacy Policy",
+      "lastUpdated": "Last updated: April 2026",
+      "intro": "At {brand}, your privacy is our core value. This policy outlines how we handle your data and the measures we take to protect your sanctuary.",
+      "s1Title": "Data Collection",
+      "s1Text": "We collect minimal data necessary to provide our services. This includes your account information and usage patterns. Your intimate notes and AI conversations are encrypted.",
+      "s2Title": "Data Usage",
+      "s2Text": "Your data is used solely to personalize your experience and improve our platform. We never sell your personal information to third parties.",
+      "s3Title": "Your Rights",
+      "s3Text": "You have the right to access, export, and delete your data at any time through your account settings."
+    },
+    "termsPage": {
+      "title": "Terms of Service",
+      "lastUpdated": "Last updated: April 2026",
+      "intro": "By using {brand}, you agree to these terms. Please read them carefully to understand your rights and responsibilities.",
+      "s1Title": "Usage Guidelines",
+      "s1Text": "{brand} is intended for adults. You agree to use the platform respectfully and for its intended purpose of wellness and connection.",
+      "s2Title": "Subscriptions",
+      "s2Text": "Premium features are available through subscription. You can cancel at any time, and you will retain access until the end of your billing period.",
+      "s3Title": "Liability",
+      "s3Text": "{brand} provides educational content and is not a substitute for professional medical or therapeutic advice."
+    },
+      "contactPage": {
+        "title": "Contact Us",
+        "subtitle": "We're here to help you on your journey.",
+        "formTitle": "Send us a message",
+        "nameLabel": "Name",
+        "emailLabel": "Email",
+        "subjectLabel": "Subject",
+        "messageLabel": "Message",
+        "sendButton": "Send Message",
+        "sending": "Sending...",
+        "success": "Message sent! We'll get back to you soon.",
+        "infoTitle": "Other ways to connect",
+        "emailInfo": "Support: support@intimera.com",
+        "emailLabel": "Email",
+        "pressLabel": "Press",
+        "pressInfo": "Press: press@intimera.com",
+        "supportQuote": "We believe in human-to-human connection. Our team reads every message and responds personally within 48 hours."
+      },
+      "footer": {
+        "tagline": "Your private sanctuary for connection. Explore, understand, and elevate your intimate life together.",
+        "platform": "Platform",
+        "legal": "Legal",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Service",
+        "contact": "Contact Us",
+        "rights": "© {year} {brand}. All rights reserved.",
+        "love": "Made with care for your connection"
+      }
+    },
   "checkIn": {
     "promptTitle": "Daily Check-in",
     "promptDescription": "Private mood and connection reflections that build emotional awareness over time.",
@@ -453,6 +539,7 @@
   "privacy": {
     "rightsTitle": "Your Rights & Privacy",
     "rightsDescription": "You have the right to access, export, and delete your data at any time. We use end-to-end encryption for all sensitive journal entries.",
+    "exportNotice": "This export contains all personal data held by {brand}. Sensitive fields (notes, messages) are included in decrypted form.",
     "exportTitle": "Export Your Data",
     "exportDescription": "Download a complete archive of your data in JSON format. This includes your profile, journal entries, and check-ins.",
     "exportButton": "Export Data",
@@ -503,7 +590,13 @@
     "generateLink": "Generate Invite Link",
     "inviteSent": "Invitation sent successfully!",
     "inviteFailed": "Failed to send invitation",
-    "generateFailed": "Failed to generate link"
+    "generateFailed": "Failed to generate link",
+    "invite": {
+      "acceptTitle": "Join your partner",
+      "acceptDescription": "Accept the invitation to link your accounts and start your shared journey.",
+      "invalidLink": "Invalid Invitation",
+      "invalidLinkDescription": "This invitation link is invalid or has expired."
+    }
   },
   "bookmarks": {
     "title": "Your Bookmarks",
@@ -536,6 +629,160 @@
     "moderation": "Moderation",
     "terminateSession": "Terminate Session",
     "administrator": "Administrator",
-    "contentManager": "Content Manager"
+    "contentManager": "Content Manager",
+    "common": {
+      "authorityCore": "Authority Core",
+      "integrityControl": "Integrity Control",
+      "archiveManagement": "Archive Management",
+      "integrityOptimal": "Sanctuary Integrity: Optimal",
+      "archiveOptimal": "Archive Integrity: Optimal"
+    },
+    "analyticsPage": {
+      "title": "Platform",
+      "titleItalic": "Analytics",
+      "description": "An editorial overview of Intimera's growth and structural health. Observe the flow of connection across our private digital retreat.",
+      "intelligenceCommand": "Intelligence Command",
+      "lastPulse": "Last Pulse: {time}",
+      "stats": {
+        "totalGuardians": "Total Guardians",
+        "premiumRituals": "Premium Rituals",
+        "activePulse": "Active Pulse",
+        "conversionFlow": "Conversion Flow",
+        "systemTopology": "System Topology",
+        "stable": "Stable"
+      },
+      "insights": {
+        "recentFlows": "Recent",
+        "recentFlowsItalic": "Flows",
+        "valuedAssets": "Valued",
+        "valuedAssetsItalic": "Assets",
+        "newGuardianJoined": "New Guardian joined the Sanctuary",
+        "aura": "Aura #{id} • {time}",
+        "active": "Active",
+        "trending": "Trending",
+        "bookmarks": "{count} bookmarks"
+      }
+    },
+    "usersPage": {
+      "title": "Sanctuary",
+      "titleItalic": "Guardians",
+      "description": "Oversee the collective of souls within the sanctuary. Manage roles, disciplines, and initiation statuses with total clarity and aesthetic precision.",
+      "identifySoul": "Identify a soul in the sanctuary...",
+      "allDisciplines": "All Disciplines",
+      "noGuardians": "No guardians found in this circle.",
+      "changeDiscipline": "Change Discipline",
+      "purge": "Purge",
+      "purgeConfirm": "Remove {email} from the Sanctuary?",
+      "discipline": "Discipline",
+      "initiated": "Initiated",
+      "whispers": "Whispers",
+      "rituals": "Rituals",
+      "verified": "Verified",
+      "pending": "Pending",
+      "ascendDescend": "Ascend or Descend Soul",
+      "cancelTransition": "Cancel Transition",
+      "purgeTitle": "Purge Account",
+      "purgeConfirmText": "Are you sure you want to permanently remove {email}? This action is irreversible.",
+      "confirmPurge": "Purge Forever",
+      "roles": {
+        "USER": "Seeker",
+        "PREMIUM": "Premium Guardian",
+        "COUPLES": "Union Member",
+        "ADMIN": "Archon",
+        "CONTENT_MANAGER": "Vault Keeper"
+      }
+    },
+    "contentPage": {
+      "title": "The Archive",
+      "titleItalic": "Vault",
+      "description": "Curate and govern the educational assets of the sanctuary. Review pending insights, manage the library, and ensure the vault remains a beacon of wisdom.",
+      "searchArchive": "Search the archive for assets...",
+      "all": "all",
+      "published": "published",
+      "draft": "draft",
+      "pending": "pending",
+      "newAsset": "New Asset",
+      "noAssets": "The vault is quiet. No assets identified.",
+      "status": {
+        "DRAFT": "Draft",
+        "PUBLISHED": "Curated",
+        "ARCHIVED": "Archived",
+        "PENDING": "Awaiting"
+      },
+      "saves": "Saves",
+      "editAsset": "Edit Asset",
+      "approvePublish": "Approve & Publish",
+      "retractAsset": "Retract Asset",
+      "curateAsset": "Curate Asset",
+      "discard": "Discard",
+      "discardTitle": "Discard Asset",
+      "discardConfirmText": "Are you sure you want to permanently remove \"{title}\" from the archive?",
+      "confirmDiscard": "Confirm Discard"
+    },
+    "moderationPage": {
+      "title": "Content",
+      "titleItalic": "Moderation",
+      "description": "Govern the discourse of the sanctuary. Maintain the high-vibration environment by reviewing flagged community flows and ensuring collective peace.",
+      "anomaliesDetected": "{count} Anomalies Detected",
+      "sanctuarySecure": "Sanctuary Secure",
+      "pendingVerdict": "Pending Verdict",
+      "approvedFlows": "Approved Flows",
+      "rejectedAnomalies": "Rejected Anomalies",
+      "pendingFlows": "Pending Flows",
+      "noPendingFlows": "The sanctuary is serene. No pending flows.",
+      "architect": "Architect",
+      "spiritId": "Spirit ID",
+      "approveFlow": "Approve Flow",
+      "rejectFlow": "Reject Flow",
+      "anonymous": "Anonymous",
+      "unknown": "Unknown"
+    },
+    "contentForm": {
+      "backToVault": "Back to Vault",
+      "updateAsset": "Update Asset",
+      "vaultAsset": "Vault Asset",
+      "coverVisual": "Cover Visual",
+      "removeCover": "Remove Cover",
+      "localizations": "Localizations",
+      "titleLabel": "Title ({locale})",
+      "titlePlaceholder": "Enter a compelling title...",
+      "summaryLabel": "Summary",
+      "summaryPlaceholder": "Brief overview of the article...",
+      "bodyLabel": "Body Content (Markdown)",
+      "bodyPlaceholder": "# Your content starts here...",
+      "uploading": "Uploading...",
+      "dropImage": "Drop image for body",
+      "insertImage": "Insert Image",
+      "configuration": "Asset Configuration",
+      "slug": "Slug",
+      "category": "Category",
+      "tier": "Tier",
+      "status": "Status",
+      "difficulty": "Difficulty",
+      "readTime": "Read Time (Min)",
+      "stage": "Stage",
+      "anyStage": "Any Stage",
+      "tiers": {
+        "FREE": "Free",
+        "PREMIUM": "Premium",
+        "COUPLES": "Couples"
+      },
+      "difficulties": {
+        "BEGINNER": "Beginner",
+        "INTERMEDIATE": "Intermediate",
+        "ADVANCED": "Advanced"
+      },
+      "newAsset": {
+        "assetCreation": "Asset Creation",
+        "vaultNewAsset": "Vault New Asset",
+        "description": "Add a new educational masterpiece to the archive. Upload visuals, localize content, and configure access tiers."
+      },
+      "upload": {
+        "label": "Choose a file or drag and drop",
+        "allowed": "Image (4MB)",
+        "button": "Upload image",
+        "failed": "Upload failed"
+      }
+    }
   }
 }

@@ -217,9 +217,13 @@ body {
 
 /* ── Selection ──────────────────────────────────────── */
 ::selection {
-  background-color: rgba(212, 165, 116, 0.3);
-  color: var(--color-ivory);
+  background-color: var(--color-gold);
+  color: var(--color-umber);
+  -webkit-text-fill-color: var(--color-umber);
+  text-shadow: none;
 }
+
+
 
 /* ── Focus Ring (Sanctuary Gold) ────────────────────── */
 :focus-visible {

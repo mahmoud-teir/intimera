@@ -5,6 +5,8 @@ import { getTranslations } from "next-intl/server";
 
 export default async function SubscriptionSettingsPage() {
 	const t = await getTranslations("settings");
+	const tCommon = await getTranslations("common");
+	const brand = tCommon("brandName");
 	const session = await auth.api.getSession({
 		headers: await headers()
 	});
@@ -21,7 +23,7 @@ export default async function SubscriptionSettingsPage() {
 			
 			<div className="max-w-xl">
 				<p className="text-sand-600 dark:text-sand-400 mb-8 leading-relaxed">
-					{t("subscriptionHelp")}
+					{t("subscriptionHelp", { brand })}
 				</p>
 				<SubscriptionControls currentRole={userRole} />
 			</div>

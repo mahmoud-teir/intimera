@@ -15,9 +15,13 @@ import {
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Sanctuary Analytics" };
+
+export async function generateMetadata() {
+	return { title: "Sanctuary Analytics" };
+}
 
 export default async function AdminAnalyticsPage() {
+	const t = await import("next-intl/server").then(m => m.getTranslations("admin"));
 	const session = await auth.api.getSession({ headers: await headers() });
 	if ((session?.user?.role as Role) === Role.CONTENT_MANAGER) redirect("/admin/content");
 
@@ -44,10 +48,10 @@ export default async function AdminAnalyticsPage() {
 	};
 
 	const stats = [
-		{ label: "Total Guardians", value: userCount, icon: Users, trend: "+12%", color: "text-terra-500" },
-		{ label: "Premium Rituals", value: premiumCount, icon: CreditCard, trend: "+5%", color: "text-amber-500" },
-		{ label: "Active Pulse", value: "98.2%", icon: Zap, trend: "Stable", color: "text-sage-500" },
-		{ label: "Conversion Flow", value: metrics.conversionRate, icon: TrendingUp, trend: "+2.4%", color: "text-terra-600" },
+		{ label: t("analyticsPage.stats.totalGuardians"), value: userCount, icon: Users, trend: "+12%", color: "text-terra-500" },
+		{ label: t("analyticsPage.stats.premiumRituals"), value: premiumCount, icon: CreditCard, trend: "+5%", color: "text-amber-500" },
+		{ label: t("analyticsPage.stats.activePulse"), value: "98.2%", icon: Zap, trend: t("analyticsPage.stats.stable"), color: "text-sage-500" },
+		{ label: t("analyticsPage.stats.conversionFlow"), value: metrics.conversionRate, icon: TrendingUp, trend: "+2.4%", color: "text-terra-600" },
 	];
 
 	return (
@@ -60,20 +64,19 @@ export default async function AdminAnalyticsPage() {
 				<div className="space-y-8 max-w-2xl">
 					<div className="flex items-center gap-4 text-terra-500 font-bold uppercase tracking-[0.4em] text-[11px] animate-in slide-in-from-left duration-700">
 						<div className="w-12 h-px bg-terra-500/30" />
-						Intelligence Command
+						{t("analyticsPage.intelligenceCommand")}
 					</div>
 					<h1 className="text-7xl font-light tracking-tighter text-foreground leading-[1.1] animate-in fade-in slide-in-from-bottom-4 duration-1000">
-						Platform <span className="text-terra-500 italic">Sanctity</span>
+						{t("analyticsPage.title")} <span className="text-terra-500 italic">{t("analyticsPage.titleItalic")}</span>
 					</h1>
 					<p className="text-xl text-foreground/40 font-medium leading-relaxed animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-						An editorial overview of Intimera's growth and structural health. 
-						Observe the flow of connection across our private digital retreat.
+						{t("analyticsPage.description")}
 					</p>
 				</div>
 				<div className="flex items-center gap-6 glass-morphism px-8 py-5 rounded-full border border-border/5 animate-in zoom-in duration-1000">
 					<Clock className="w-4 h-4 text-terra-500" />
 					<span className="text-[10px] font-bold uppercase tracking-widest text-foreground/60">
-						Last Pulse: {new Date().toLocaleTimeString()}
+						{t("analyticsPage.lastPulse", { time: new Date().toLocaleTimeString() })}
 					</span>
 				</div>
 			</header>
@@ -106,7 +109,7 @@ export default async function AdminAnalyticsPage() {
 			<section className="space-y-8">
 				<div className="flex items-center gap-4 px-2">
 					<div className="h-px flex-1 bg-gradient-to-r from-transparent via-border/20 to-transparent" />
-					<h2 className="text-[10px] font-bold text-foreground/30 uppercase tracking-[0.4em]">System Topology</h2>
+					<h2 className="text-[10px] font-bold text-foreground/30 uppercase tracking-[0.4em]">{t("analyticsPage.stats.systemTopology")}</h2>
 					<div className="h-px flex-1 bg-gradient-to-r from-transparent via-border/20 to-transparent" />
 				</div>
 				<div className="bg-surface/20 dark:bg-sanctum/20 rounded-[64px] overflow-hidden border border-border/5 relative shadow-inner">
@@ -118,7 +121,7 @@ export default async function AdminAnalyticsPage() {
 			<section className="grid grid-cols-1 lg:grid-cols-2 gap-16 pb-20">
 				<div className="space-y-8">
 					<h3 className="text-2xl font-light tracking-tight text-foreground flex items-center gap-4">
-						Recent <span className="italic text-terra-500">Flows</span>
+						{t("analyticsPage.insights.recentFlows")} <span className="italic text-terra-500">{t("analyticsPage.insights.recentFlowsItalic")}</span>
 					</h3>
 					<div className="bg-surface/30 dark:bg-sanctum/30 backdrop-blur-md rounded-[48px] p-8 border border-border/5 space-y-1">
 						{[1, 2, 3, 4].map((_, i) => (
@@ -127,11 +130,11 @@ export default async function AdminAnalyticsPage() {
 									<Users className="w-5 h-5 text-terra-500" />
 								</div>
 								<div className="flex-1">
-									<p className="text-sm font-semibold text-foreground">New Guardian joined the Sanctuary</p>
-									<p className="text-[10px] text-foreground/40 font-medium uppercase tracking-wider">Aura #{1234 + i} • 2 minutes ago</p>
+									<p className="text-sm font-semibold text-foreground">{t("analyticsPage.insights.newGuardianJoined")}</p>
+									<p className="text-[10px] text-foreground/40 font-medium uppercase tracking-wider">{t("analyticsPage.insights.aura", { id: 1234 + i, time: "2 minutes" })}</p>
 								</div>
 								<div className="px-4 py-2 bg-sage-500/5 text-sage-600 rounded-full text-[9px] font-bold uppercase tracking-widest border border-sage-500/10">
-									Active
+									{t("analyticsPage.insights.active")}
 								</div>
 							</div>
 						))}
@@ -140,7 +143,7 @@ export default async function AdminAnalyticsPage() {
 
 				<div className="space-y-8">
 					<h3 className="text-2xl font-light tracking-tight text-foreground flex items-center gap-4">
-						Valued <span className="italic text-terra-500">Assets</span>
+						{t("analyticsPage.insights.valuedAssets")} <span className="italic text-terra-500">{t("analyticsPage.insights.valuedAssetsItalic")}</span>
 					</h3>
 					<div className="bg-surface/30 dark:bg-sanctum/30 backdrop-blur-md rounded-[48px] p-8 border border-border/5 space-y-1">
 						{[1, 2, 3, 4].map((_, i) => (
@@ -150,10 +153,10 @@ export default async function AdminAnalyticsPage() {
 								</div>
 								<div className="flex-1">
 									<p className="text-sm font-semibold text-foreground">The Art of Mindful Touch</p>
-									<p className="text-[10px] text-foreground/40 font-medium uppercase tracking-wider">Education • {450 - i * 12} bookmarks</p>
+									<p className="text-[10px] text-foreground/40 font-medium uppercase tracking-wider">Education • {t("analyticsPage.insights.bookmarks", { count: 450 - i * 12 })}</p>
 								</div>
 								<div className="px-4 py-2 bg-terra-500/5 text-terra-600 rounded-full text-[9px] font-bold uppercase tracking-widest border border-terra-500/10">
-									Trending
+									{t("analyticsPage.insights.trending")}
 								</div>
 							</div>
 						))}

@@ -3,18 +3,23 @@ import { Hero } from "@/components/marketing/hero";
 import { Features } from "@/components/marketing/features";
 import { Pricing } from "@/components/marketing/pricing";
 import { Footer } from "@/components/marketing/footer";
-import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
-export const metadata: Metadata = {
-	title: "Intimera | Elevate Your Intimate Life Together",
-	description:
-		"Intimera is a science-backed, private sanctuary to explore, understand, and elevate your intimate life together.",
-	openGraph: {
-		title: "Intimera | Elevate Your Intimate Life Together",
-		description: "A private sanctuary for couples to explore intimacy.",
-		type: "website",
-	},
-};
+export async function generateMetadata() {
+	const t = await getTranslations("marketing.hero");
+	const tCommon = await getTranslations("common");
+	const brand = tCommon("brandName");
+	
+	return {
+		title: `${brand} | ${t("headline", { highlight: (chunks: string) => chunks })}`,
+		description: t("subtext", { brand }),
+		openGraph: {
+			title: `${brand} | ${t("headline", { highlight: (chunks: string) => chunks })}`,
+			description: t("subtext", { brand }),
+			type: "website",
+		},
+	};
+}
 
 export default function LandingPage() {
 	return (

@@ -61,7 +61,7 @@ async function main() {
 			tier: SubscriptionTier.PREMIUM,
 			status: ContentStatus.PUBLISHED,
 			difficulty: Difficulty.INTERMEDIATE,
-			relationshipStage: RelationshipStage.LONG_TERM,
+			relationshipStage: RelationshipStage.ESTABLISHED,
 			readingTimeMin: 10,
 			translations: {
 				create: {
@@ -108,9 +108,9 @@ async function main() {
 			description: "A simple daily practice to focus on what you love about each other.",
 			steps: {
 				create: [
-					{ stepNumber: 1, type: StepType.TEXT, locale: "en", title: "Find a Jar", content: "Find a physical jar or create a digital one in your Shared Notes." },
-					{ stepNumber: 2, type: StepType.TEXT, locale: "en", title: "Daily Note", content: "Write one thing you appreciated about your partner today." },
-					{ stepNumber: 3, type: StepType.TEXT, locale: "en", title: "Sunday Reveal", content: "Read the notes together every Sunday evening." },
+					{ stepNumber: 1, type: StepType.TEXT_PROMPT, locale: "en", title: "Find a Jar", content: "Find a physical jar or create a digital one in your Shared Notes." },
+					{ stepNumber: 2, type: StepType.TEXT_PROMPT, locale: "en", title: "Daily Note", content: "Write one thing you appreciated about your partner today." },
+					{ stepNumber: 3, type: StepType.TEXT_PROMPT, locale: "en", title: "Sunday Reveal", content: "Read the notes together every Sunday evening." },
 				]
 			}
 		},
@@ -126,9 +126,9 @@ async function main() {
 			description: "Experience the profound intimacy of silence and visual presence.",
 			steps: {
 				create: [
-					{ stepNumber: 1, type: StepType.TEXT, locale: "en", title: "Set the Scene", content: "Sit comfortably facing each other in a quiet, dimly lit space." },
-					{ stepNumber: 2, type: StepType.TEXT, locale: "en", title: "Gaze", content: "Set a timer for 4 minutes. Look into each other's eyes without speaking." },
-					{ stepNumber: 3, type: StepType.TEXT, locale: "en", title: "Reflect", content: "Share what feelings arose during the silence." },
+					{ stepNumber: 1, type: StepType.TEXT_PROMPT, locale: "en", title: "Set the Scene", content: "Sit comfortably facing each other in a quiet, dimly lit space." },
+					{ stepNumber: 2, type: StepType.TEXT_PROMPT, locale: "en", title: "Gaze", content: "Set a timer for 4 minutes. Look into each other's eyes without speaking." },
+					{ stepNumber: 3, type: StepType.TEXT_PROMPT, locale: "en", title: "Reflect", content: "Share what feelings arose during the silence." },
 				]
 			}
 		}

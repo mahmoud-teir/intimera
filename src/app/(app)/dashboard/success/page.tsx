@@ -11,6 +11,11 @@ export default function CheckoutSuccessPage() {
 	const router = useRouter();
 	const sessionId = searchParams.get("session_id");
 	const [isValidating, setIsValidating] = useState(true);
+	
+	// Temporarily import useTranslations here since it's a client component
+	const { useTranslations } = require("next-intl");
+	const tCommon = useTranslations("common");
+	const brand = tCommon("brandName");
 
 	useEffect(() => {
 		if (!sessionId) {
@@ -72,7 +77,7 @@ export default function CheckoutSuccessPage() {
 			</h1>
 			
 			<p className="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto mb-10">
-				Your subscription has been activated successfully. You now have full access to Intimera's advanced wellness tools, community features, and personalized insights.
+				Your subscription has been activated successfully. You now have full access to {brand}'s advanced wellness tools, community features, and personalized insights.
 			</p>
 			
 			<div className="flex flex-col sm:flex-row gap-4 justify-center">

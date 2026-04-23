@@ -8,7 +8,10 @@ import { ModerationQueue } from "@/components/admin/moderation-queue";
 import { ShieldAlert, CheckCircle, XCircle } from "lucide-react";
 
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Sanctuary Moderation" };
+
+export async function generateMetadata() {
+	return { title: "Sanctuary Moderation" };
+}
 
 async function approvePost(id: string) {
 	"use server";
@@ -23,8 +26,11 @@ async function rejectPost(id: string) {
 }
 
 export default async function AdminModerationPage() {
+	const t = await import("next-intl/server").then(m => m.getTranslations("admin"));
 	const session = await auth.api.getSession({ headers: await headers() });
 	if ((session?.user?.role as Role) === Role.CONTENT_MANAGER) redirect("/admin/content");
+
+	const tCommon = await import("next-intl/server").then(m => m.getTranslations("common"));
 
 	const [pendingPosts, stats] = await Promise.all([
 		db.communityPost.findMany({
@@ -47,9 +53,9 @@ export default async function AdminModerationPage() {
 	);
 
 	const statsCards = [
-		{ label: "Pending Verdict", value: statusCounts["PENDING"] ?? 0, icon: ShieldAlert, color: "text-terra-500", bg: "bg-terra-500/5" },
-		{ label: "Approved Flows", value: statusCounts["APPROVED"] ?? 0, icon: CheckCircle, color: "text-sage-500", bg: "bg-sage-500/5" },
-		{ label: "Rejected Anomalies", value: statusCounts["REJECTED"] ?? 0, icon: XCircle, color: "text-foreground/20", bg: "bg-subtle" },
+		{ label: t("moderationPage.pendingVerdict"), value: statusCounts["PENDING"] ?? 0, icon: ShieldAlert, color: "text-terra-500", bg: "bg-terra-500/5" },
+		{ label: t("moderationPage.approvedFlows"), value: statusCounts["APPROVED"] ?? 0, icon: CheckCircle, color: "text-sage-500", bg: "bg-sage-500/5" },
+		{ label: t("moderationPage.rejectedAnomalies"), value: statusCounts["REJECTED"] ?? 0, icon: XCircle, color: "text-foreground/20", bg: "bg-subtle" },
 	];
 
 	return (
@@ -62,14 +68,13 @@ export default async function AdminModerationPage() {
 				<div className="space-y-8 max-w-3xl">
 					<div className="flex items-center gap-4 text-terra-500 font-bold uppercase tracking-[0.4em] text-[11px] animate-in slide-in-from-left duration-700">
 						<div className="w-12 h-px bg-terra-500/30" />
-						Integrity Control
+						{t("common.integrityControl")}
 					</div>
 					<h1 className="text-7xl font-light tracking-tighter text-foreground leading-[1.1] animate-in fade-in slide-in-from-bottom-4 duration-1000">
-						Content <span className="text-terra-500 italic">Moderation</span>
+						{t("moderationPage.title")} <span className="text-terra-500 italic">{t("moderationPage.titleItalic")}</span>
 					</h1>
 					<p className="text-xl text-foreground/40 font-medium leading-relaxed max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-						Govern the discourse of the sanctuary. Maintain the high-vibration environment 
-						by reviewing flagged community flows and ensuring collective peace.
+						{t("moderationPage.description")}
 					</p>
 				</div>
 				
@@ -80,7 +85,7 @@ export default async function AdminModerationPage() {
 				}`}>
 					<div className={`w-4 h-4 rounded-full ${(statusCounts["PENDING"] ?? 0) > 0 ? "bg-terra-500 animate-ping shadow-[0_0_12px_rgba(239,68,68,0.5)]" : "bg-sage-500 shadow-[0_0_12px_rgba(34,197,94,0.5)]"}`} />
 					<span className="text-xs font-bold uppercase tracking-[0.3em] text-foreground/60">
-						{(statusCounts["PENDING"] ?? 0) > 0 ? `${statusCounts["PENDING"]} Anomalies Detected` : "Sanctuary Secure"}
+						{(statusCounts["PENDING"] ?? 0) > 0 ? t("moderationPage.anomaliesDetected", { count: statusCounts["PENDING"] }) : t("moderationPage.sanctuarySecure")}
 					</span>
 				</div>
 			</header>
@@ -104,7 +109,7 @@ export default async function AdminModerationPage() {
 			<section className="pb-32 space-y-12">
 				<div className="flex items-center gap-4 px-2">
 					<div className="h-px flex-1 bg-gradient-to-r from-transparent via-border/20 to-transparent" />
-					<h2 className="text-[10px] font-bold text-foreground/30 uppercase tracking-[0.4em]">Pending Flows</h2>
+					<h2 className="text-[10px] font-bold text-foreground/30 uppercase tracking-[0.4em]">{t("moderationPage.pendingFlows")}</h2>
 					<div className="h-px flex-1 bg-gradient-to-r from-transparent via-border/20 to-transparent" />
 				</div>
 				
@@ -114,7 +119,7 @@ export default async function AdminModerationPage() {
 						title: p.title,
 						body: p.body,
 						topic: p.topic.name,
-						authorName: p.isAnonymous ? "Anonymous" : (p.author?.name ?? "Unknown"),
+						authorName: p.isAnonymous ? t("moderationPage.anonymous") : (p.author?.name ?? t("moderationPage.unknown")),
 						authorEmail: p.isAnonymous ? null : (p.author?.email ?? null),
 						createdAt: p.createdAt.toISOString(),
 					}))}

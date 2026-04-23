@@ -10,7 +10,7 @@ const UNIQUE_EMAIL = `e2e-${Date.now()}@test.com`;
 test.describe('Authentication Flow', () => {
 	test('should display the landing page and navigate to register', async ({ page }) => {
 		await page.goto('/');
-		await expect(page).toHaveTitle(/Intimera/i);
+		await expect(page).toHaveTitle(new RegExp(process.env.NEXT_PUBLIC_APP_NAME || "Intimera", "i"));
 
 		// Look for a CTA that leads to registration
 		const ctaButton = page.getByRole('link', { name: /get started|sign up|join/i }).first();

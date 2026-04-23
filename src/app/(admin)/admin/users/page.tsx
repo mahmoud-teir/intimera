@@ -6,10 +6,16 @@ import { Role } from "@/generated/prisma/client";
 import { AdminUsersTable } from "@/components/admin/users-table";
 import { revalidatePath } from "next/cache";
 
+import { useTranslations } from "next-intl";
+
 export const dynamic = "force-dynamic";
-export const metadata = { title: "Sanctuary Guardians" };
+
+export async function generateMetadata() {
+	return { title: "Sanctuary Guardians" }; // Metadata doesn't easily support t() in Next.js 15 without more setup, keeping as is or using a static key
+}
 
 export default async function AdminUsersPage() {
+	const t = await import("next-intl/server").then(m => m.getTranslations("admin"));
 	const session = await auth.api.getSession({ headers: await headers() });
 	if ((session?.user?.role as Role) !== Role.ADMIN) redirect("/admin/content");
 
@@ -53,14 +59,13 @@ export default async function AdminUsersPage() {
 			<header className="space-y-8 max-w-3xl relative z-10">
 				<div className="flex items-center gap-4 text-terra-500 font-bold uppercase tracking-[0.4em] text-[11px] animate-in slide-in-from-left duration-700">
 					<div className="w-12 h-px bg-terra-500/30" />
-					Authority Core
+					{t("common.authorityCore")}
 				</div>
 				<h1 className="text-7xl font-light tracking-tighter text-foreground leading-[1.1] animate-in fade-in slide-in-from-bottom-4 duration-1000">
-					Sanctuary <span className="text-terra-500 italic">Guardians</span>
+					{t("usersPage.title")} <span className="text-terra-500 italic">{t("usersPage.titleItalic")}</span>
 				</h1>
 				<p className="text-xl text-foreground/40 font-medium leading-relaxed max-w-2xl animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200">
-					Oversee the collective of souls within the sanctuary. Manage roles, disciplines, 
-					and initiation statuses with total clarity and aesthetic precision.
+					{t("usersPage.description")}
 				</p>
 			</header>
 

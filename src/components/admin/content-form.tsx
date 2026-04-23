@@ -3,6 +3,7 @@
 import { useState, useTransition, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Save, ArrowLeft, Globe, ImagePlus, X, Upload, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
 import { UploadDropzone } from "@/lib/uploadthing";
@@ -10,6 +11,7 @@ import { UploadDropzone } from "@/lib/uploadthing";
 interface Category {
 	id: string;
 	name: string;
+	slug: string;
 }
 
 interface ContentFormProps {
@@ -20,6 +22,9 @@ interface ContentFormProps {
 
 export function ContentForm({ initialData, categories, onSave }: ContentFormProps) {
 	const router = useRouter();
+	const t = useTranslations("admin");
+	const tLibrary = useTranslations("library");
+	const tLocales = useTranslations("locales");
 	const [isPending, startTransition] = useTransition();
 	const [activeLocale, setActiveLocale] = useState<"en" | "ar">("en");
 	const bodyRef = useRef<HTMLTextAreaElement>(null);
@@ -101,18 +106,18 @@ export function ContentForm({ initialData, categories, onSave }: ContentFormProp
 			<div className="flex items-center justify-between mb-8">
 				<Link
 					href="/admin/content"
-					className="flex items-center gap-3 text-foreground/40 hover:text-foreground transition-colors text-[10px] font-bold uppercase tracking-[0.2em]"
+					className="flex items-center gap-3 text-foreground/60 hover:text-foreground transition-colors text-xs font-bold uppercase tracking-[0.2em]"
 				>
 					<ArrowLeft className="w-4 h-4" />
-					Back to Vault
+					{t("contentForm.backToVault")}
 				</Link>
 				<button
 					type="submit"
 					disabled={isPending}
-					className="flex items-center gap-3 px-10 py-4 rounded-full bg-terra-500 hover:bg-terra-600 text-white font-bold text-[10px] uppercase tracking-[0.2em] hover:-translate-y-0.5 transition-all active:translate-y-0 disabled:opacity-50 shadow-xl shadow-terra-500/20"
+					className="flex items-center gap-3 px-10 py-4 rounded-full bg-terra-500 hover:bg-terra-600 text-white font-bold text-xs uppercase tracking-[0.2em] hover:-translate-y-0.5 transition-all active:translate-y-0 disabled:opacity-50 shadow-xl shadow-terra-500/20"
 				>
 					<Save className="w-4 h-4" />
-					{initialData ? "Update Asset" : "Vault Asset"}
+					{initialData ? t("contentForm.updateAsset") : t("contentForm.vaultAsset")}
 				</button>
 			</div>
 
@@ -121,8 +126,8 @@ export function ContentForm({ initialData, categories, onSave }: ContentFormProp
 				<div className="lg:col-span-2 space-y-10">
 					{/* Cover Image Upload */}
 					<div className="bg-surface/40 dark:bg-sanctum/40 backdrop-blur-xl rounded-[48px] p-10 border border-border/5 space-y-6">
-						<h2 className="text-[10px] font-bold text-foreground/30 uppercase tracking-[0.3em]">
-							Cover Visual
+						<h2 className="text-xs font-bold text-foreground/40 uppercase tracking-[0.3em]">
+							{t("contentForm.coverVisual")}
 						</h2>
 
 						{formData.coverImage ? (
@@ -142,10 +147,10 @@ export function ContentForm({ initialData, categories, onSave }: ContentFormProp
 												coverImage: "",
 											}))
 										}
-										className="opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2 px-6 py-3 rounded-full bg-white/20 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest hover:bg-white/30"
+										className="opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2 px-6 py-3 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-bold uppercase tracking-widest hover:bg-white/30"
 									>
 										<X className="w-4 h-4" />
-										Remove Cover
+										{t("contentForm.removeCover")}
 									</button>
 								</div>
 							</div>
@@ -156,18 +161,24 @@ export function ContentForm({ initialData, categories, onSave }: ContentFormProp
 									if (res?.[0]) {
 										setFormData((prev) => ({
 											...prev,
-											coverImage: res[0].ufsUrl,
+											coverImage: res[0].url,
 										}));
 									}
 								}}
 								onUploadError={(error: Error) => {
-									alert(`Upload failed: ${error.message}`);
+									console.error("Upload Error:", error);
+									alert(`${t("contentForm.upload.failed")}: ${error.message}`);
 								}}
-								className="ut-ready:border-terra-500/20 ut-uploading:border-terra-500/40 border-2 border-dashed border-border/20 rounded-[32px] bg-subtle/20 p-16 ut-button:bg-terra-500 ut-button:rounded-full ut-button:px-8 ut-button:py-3 ut-button:text-[10px] ut-button:font-bold ut-button:uppercase ut-button:tracking-widest ut-button:shadow-lg ut-button:shadow-terra-500/20 ut-label:text-foreground/40 ut-label:text-sm ut-allowed-content:text-foreground/20 ut-allowed-content:text-[10px]"
+								className="ut-ready:border-terra-500/20 ut-uploading:border-terra-500/40 border-2 border-dashed border-border/20 rounded-[32px] bg-subtle/20 p-16 ut-button:bg-terra-500 ut-button:rounded-full ut-button:px-8 ut-button:py-3 ut-button:text-xs ut-button:font-bold ut-button:uppercase ut-button:tracking-widest ut-button:shadow-lg ut-button:shadow-terra-500/20 ut-label:text-foreground/60 ut-label:text-sm ut-allowed-content:text-foreground/40 ut-allowed-content:text-xs"
+								content={{
+									label: t("contentForm.upload.label"),
+									allowedContent: t("contentForm.upload.allowed"),
+									button: t("contentForm.upload.button"),
+								}}
 								appearance={{
 									container: "min-h-[200px] flex flex-col items-center justify-center gap-4",
-									label: "text-foreground/40 font-medium",
-									allowedContent: "text-foreground/20 text-[10px] uppercase tracking-widest",
+									label: "text-foreground/60 font-semibold",
+									allowedContent: "text-foreground/40 text-xs uppercase tracking-widest",
 								}}
 							/>
 						)}
@@ -176,9 +187,9 @@ export function ContentForm({ initialData, categories, onSave }: ContentFormProp
 					{/* Localizations */}
 					<div className="bg-surface/40 dark:bg-sanctum/40 backdrop-blur-xl rounded-[48px] p-10 border border-border/5 space-y-8">
 						<div className="flex items-center justify-between pb-6">
-							<h2 className="text-lg font-light text-foreground flex items-center gap-3 tracking-tight">
+							<h2 className="text-xl font-medium text-foreground flex items-center gap-3 tracking-tight">
 								<Globe className="w-5 h-5 text-terra-500" />
-								Localizations
+								{t("contentForm.localizations")}
 							</h2>
 							<div className="flex p-1.5 rounded-full bg-subtle/50 border border-border/5">
 								{(["en", "ar"] as const).map((l) => (
@@ -186,13 +197,13 @@ export function ContentForm({ initialData, categories, onSave }: ContentFormProp
 										key={l}
 										type="button"
 										onClick={() => setActiveLocale(l)}
-										className={`px-6 py-2 text-[10px] font-bold uppercase tracking-widest rounded-full transition-all ${
+										className={`px-6 py-2 text-xs font-bold uppercase tracking-widest rounded-full transition-all ${
 											activeLocale === l
 												? "bg-terra-500 text-white shadow-lg shadow-terra-500/20"
-												: "text-foreground/40 hover:text-foreground"
+												: "text-foreground/60 hover:text-foreground"
 										}`}
 									>
-										{l === "en" ? "English" : "العربية"}
+										{l === "en" ? tLocales("en") : tLocales("ar")}
 									</button>
 								))}
 							</div>
@@ -200,8 +211,8 @@ export function ContentForm({ initialData, categories, onSave }: ContentFormProp
 
 						<div className="space-y-6" dir={activeLocale === "ar" ? "rtl" : "ltr"}>
 							<div>
-								<label className="block text-[10px] font-bold text-terra-500 uppercase tracking-[0.3em] mb-3 px-2">
-									Title ({activeLocale.toUpperCase()})
+								<label className="block text-xs font-bold text-terra-500 uppercase tracking-[0.3em] mb-3 px-2">
+									{t("contentForm.titleLabel", { locale: activeLocale.toUpperCase() })}
 								</label>
 								<input
 									type="text"
@@ -209,13 +220,13 @@ export function ContentForm({ initialData, categories, onSave }: ContentFormProp
 									value={formData.translations[activeLocale].title}
 									onChange={(e) => handleTranslationChange("title", e.target.value)}
 									className="w-full bg-subtle/30 border-none rounded-full px-8 py-5 text-foreground placeholder:text-foreground/20 focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all font-semibold text-lg"
-									placeholder="Enter a compelling title..."
+									placeholder={t("contentForm.titlePlaceholder")}
 								/>
 							</div>
 
 							<div>
-								<label className="block text-[10px] font-bold text-terra-500 uppercase tracking-[0.3em] mb-3 px-2">
-									Summary
+								<label className="block text-xs font-bold text-terra-500 uppercase tracking-[0.3em] mb-3 px-2">
+									{t("contentForm.summaryLabel")}
 								</label>
 								<textarea
 									rows={3}
@@ -223,14 +234,14 @@ export function ContentForm({ initialData, categories, onSave }: ContentFormProp
 									value={formData.translations[activeLocale].summary}
 									onChange={(e) => handleTranslationChange("summary", e.target.value)}
 									className="w-full bg-subtle/30 border-none rounded-3xl px-8 py-5 text-foreground placeholder:text-foreground/20 focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all text-sm leading-relaxed resize-none font-medium"
-									placeholder="Brief overview of the article..."
+									placeholder={t("contentForm.summaryPlaceholder")}
 								/>
 							</div>
 
 							<div>
 								<div className="flex items-center justify-between mb-3 px-2">
-									<label className="block text-[10px] font-bold text-terra-500 uppercase tracking-[0.3em]">
-										Body Content (Markdown)
+									<label className="block text-xs font-bold text-terra-500 uppercase tracking-[0.3em]">
+										{t("contentForm.bodyLabel")}
 									</label>
 									
 									{/* Inline Image Upload Button */}
@@ -241,28 +252,29 @@ export function ContentForm({ initialData, categories, onSave }: ContentFormProp
 											onClientUploadComplete={(res) => {
 												setIsUploadingInline(false);
 												if (res?.[0]) {
-													insertImageAtCursor(res[0].ufsUrl);
+													insertImageAtCursor(res[0].url);
 												}
 											}}
 											onUploadError={(error: Error) => {
 												setIsUploadingInline(false);
-												alert(`Upload failed: ${error.message}`);
+												console.error("Inline Upload Error:", error);
+												alert(`${t("contentForm.upload.failed")}: ${error.message}`);
 											}}
-											className="ut-ready:border-terra-500/20 ut-uploading:border-terra-500/40 border border-dashed border-border/10 rounded-2xl bg-subtle/20 p-4 ut-button:bg-terra-500 ut-button:rounded-full ut-button:px-4 ut-button:py-2 ut-button:text-[9px] ut-button:font-bold ut-button:uppercase ut-button:tracking-widest ut-label:text-foreground/30 ut-label:text-[10px] ut-allowed-content:hidden"
+											className="ut-ready:border-terra-500/20 ut-uploading:border-terra-500/40 border border-dashed border-border/10 rounded-2xl bg-subtle/20 p-4 ut-button:bg-terra-500 ut-button:rounded-full ut-button:px-4 ut-button:py-2 ut-button:text-[11px] ut-button:font-bold ut-button:uppercase ut-button:tracking-widest ut-label:text-foreground/40 ut-label:text-xs ut-allowed-content:hidden"
 											appearance={{
 												container: "flex flex-col items-center gap-2 min-h-0",
-												label: "text-foreground/30 text-[10px]",
-												button: "text-[9px]",
+												label: "text-foreground/40 text-xs",
+												button: "text-[11px]",
 											}}
 											content={{
-												label: isUploadingInline ? "Uploading..." : "Drop image for body",
+												label: isUploadingInline ? t("contentForm.uploading") : t("contentForm.dropImage"),
 												button: isUploadingInline ? (
 													<span className="flex items-center gap-2">
-														<Loader2 className="w-3 h-3 animate-spin" /> Uploading
+														<Loader2 className="w-3 h-3 animate-spin" /> {t("contentForm.uploading")}
 													</span>
 												) : (
 													<span className="flex items-center gap-2">
-														<ImagePlus className="w-3 h-3" /> Insert Image
+														<ImagePlus className="w-3 h-3" /> {t("contentForm.insertImage")}
 													</span>
 												),
 											}}
@@ -276,7 +288,7 @@ export function ContentForm({ initialData, categories, onSave }: ContentFormProp
 									value={formData.translations[activeLocale].body}
 									onChange={(e) => handleTranslationChange("body", e.target.value)}
 									className="w-full bg-subtle/30 border-none rounded-3xl px-8 py-5 text-foreground placeholder:text-foreground/20 focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all font-mono text-sm leading-relaxed"
-									placeholder="# Your content starts here..."
+									placeholder={t("contentForm.bodyPlaceholder")}
 								/>
 							</div>
 						</div>
@@ -286,99 +298,107 @@ export function ContentForm({ initialData, categories, onSave }: ContentFormProp
 				{/* Metadata Sidebar */}
 				<div className="space-y-10">
 					<div className="bg-surface/40 dark:bg-sanctum/40 backdrop-blur-xl rounded-[48px] p-10 border border-border/5 space-y-8 sticky top-8">
-						<h2 className="text-[10px] font-bold text-foreground/30 uppercase tracking-[0.3em] pb-4 border-b border-border/5">
-							Asset Configuration
+						<h2 className="text-xs font-bold text-foreground/40 uppercase tracking-[0.3em] pb-4 border-b border-border/5">
+							{t("contentForm.configuration")}
 						</h2>
 						
 						<div className="space-y-6">
 							<div>
-								<label className="block text-[10px] font-bold text-foreground/30 uppercase tracking-[0.2em] mb-3">Slug</label>
+								<label className="block text-xs font-bold text-foreground/40 uppercase tracking-[0.2em] mb-3">{t("contentForm.slug")}</label>
 								<input
 									type="text"
 									required
 									value={formData.slug}
 									onChange={(e) => setFormData(prev => ({ ...prev, slug: e.target.value }))}
-									className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground placeholder:text-foreground/20 focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all font-mono text-xs"
+									className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground placeholder:text-foreground/20 focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all font-mono text-sm"
 								/>
 							</div>
 
 							<div>
-								<label className="block text-[10px] font-bold text-foreground/30 uppercase tracking-[0.2em] mb-3">Category</label>
+								<label className="block text-xs font-bold text-foreground/40 uppercase tracking-[0.2em] mb-3">{t("contentForm.category")}</label>
 								<select
 									value={formData.categoryId}
 									onChange={(e) => setFormData(prev => ({ ...prev, categoryId: e.target.value }))}
-									className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all cursor-pointer text-xs appearance-none"
+									className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all cursor-pointer text-sm appearance-none"
 								>
-									{categories.map(c => (
-										<option key={c.id} value={c.id}>{c.name}</option>
-									))}
+									{categories.map(c => {
+										const translationKey = `cat_${c.slug}`;
+										return (
+											<option key={c.id} value={c.id}>
+												{tLibrary(translationKey as any) !== translationKey 
+													? tLibrary(translationKey as any) 
+													: c.name}
+											</option>
+										);
+									})}
 								</select>
 							</div>
 
 							<div className="grid grid-cols-2 gap-4">
 								<div>
-									<label className="block text-[10px] font-bold text-foreground/30 uppercase tracking-[0.2em] mb-3">Tier</label>
+									<label className="block text-xs font-bold text-foreground/40 uppercase tracking-[0.2em] mb-3">{t("contentForm.tier")}</label>
 									<select
 										value={formData.tier}
 										onChange={(e) => setFormData(prev => ({ ...prev, tier: e.target.value }))}
-										className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all cursor-pointer text-xs appearance-none"
+										className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all cursor-pointer text-sm appearance-none"
 									>
-										<option value="FREE">Free</option>
-										<option value="PREMIUM">Premium</option>
-										<option value="COUPLES">Couples</option>
+										<option value="FREE">{t("contentForm.tiers.FREE")}</option>
+										<option value="PREMIUM">{t("contentForm.tiers.PREMIUM")}</option>
+										<option value="COUPLES">{t("contentForm.tiers.COUPLES")}</option>
 									</select>
 								</div>
 								<div>
-									<label className="block text-[10px] font-bold text-foreground/30 uppercase tracking-[0.2em] mb-3">Status</label>
+									<label className="block text-xs font-bold text-foreground/40 uppercase tracking-[0.2em] mb-3">{t("contentForm.status")}</label>
 									<select
 										value={formData.status}
 										onChange={(e) => setFormData(prev => ({ ...prev, status: e.target.value }))}
-										className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all cursor-pointer text-xs appearance-none"
+										className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all cursor-pointer text-sm appearance-none"
 									>
-										<option value="DRAFT">Draft</option>
-										<option value="PUBLISHED">Published</option>
-										<option value="ARCHIVED">Archived</option>
+										<option value="DRAFT">{t("contentPage.status.DRAFT")}</option>
+										<option value="PUBLISHED">{t("contentPage.status.PUBLISHED")}</option>
+										<option value="ARCHIVED">{t("contentPage.status.ARCHIVED")}</option>
 									</select>
 								</div>
 							</div>
 
 							<div className="grid grid-cols-2 gap-4">
 								<div>
-									<label className="block text-[10px] font-bold text-foreground/30 uppercase tracking-[0.2em] mb-3">Difficulty</label>
+									<label className="block text-xs font-bold text-foreground/40 uppercase tracking-[0.2em] mb-3">{t("contentForm.difficulty")}</label>
 									<select
 										value={formData.difficulty}
 										onChange={(e) => setFormData(prev => ({ ...prev, difficulty: e.target.value }))}
-										className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all cursor-pointer text-xs appearance-none"
+										className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all cursor-pointer text-sm appearance-none"
 									>
-										<option value="BEGINNER">Beginner</option>
-										<option value="INTERMEDIATE">Intermediate</option>
-										<option value="ADVANCED">Advanced</option>
+										<option value="BEGINNER">{t("contentForm.difficulties.BEGINNER")}</option>
+										<option value="INTERMEDIATE">{t("contentForm.difficulties.INTERMEDIATE")}</option>
+										<option value="ADVANCED">{t("contentForm.difficulties.ADVANCED")}</option>
 									</select>
 								</div>
 								<div>
-									<label className="block text-[10px] font-bold text-foreground/30 uppercase tracking-[0.2em] mb-3">Read Time</label>
+									<label className="block text-xs font-bold text-foreground/40 uppercase tracking-[0.2em] mb-3">{t("contentForm.readTime")}</label>
 									<input
 										type="number"
 										value={formData.readingTimeMin}
 										onChange={(e) => setFormData(prev => ({ ...prev, readingTimeMin: parseInt(e.target.value) }))}
-										className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all text-xs"
+										className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all text-sm"
 									/>
 								</div>
 							</div>
 
 							<div>
-								<label className="block text-[10px] font-bold text-foreground/30 uppercase tracking-[0.2em] mb-3">Stage</label>
+								<label className="block text-xs font-bold text-foreground/40 uppercase tracking-[0.2em] mb-3">{t("contentForm.stage")}</label>
 								<select
 									value={formData.relationshipStage}
 									onChange={(e) => setFormData(prev => ({ ...prev, relationshipStage: e.target.value }))}
-									className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all cursor-pointer text-xs appearance-none"
+									className="w-full bg-subtle/30 border-none rounded-full px-6 py-3.5 text-foreground focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all cursor-pointer text-sm appearance-none"
 								>
-									<option value="ANY">Any Stage</option>
-									<option value="DATING">Dating</option>
-									<option value="ENGAGED">Engaged</option>
-									<option value="NEWLYWED">Newlywed</option>
-									<option value="ESTABLISHED">Established</option>
-									<option value="RECONNECTING">Reconnecting</option>
+									<option value="ANY">{t("contentForm.anyStage")}</option>
+									<option value="DATING">{tLibrary("stageDating")}</option>
+									<option value="ENGAGED">{tLibrary("stageEngaged")}</option>
+									<option value="NEWLYWED">{tLibrary("stageNewlywed")}</option>
+									<option value="ESTABLISHED">{tLibrary("stageEstablished")}</option>
+									<option value="RECONNECTING">{tLibrary("stageReconnecting")}</option>
+
 								</select>
 							</div>
 						</div>

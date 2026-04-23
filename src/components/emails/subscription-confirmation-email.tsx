@@ -10,7 +10,7 @@ interface SubscriptionConfirmationEmailProps {
 
 export const SubscriptionConfirmationEmail: React.FC<SubscriptionConfirmationEmailProps> = ({
 	userName,
-	appName = "Intimera",
+	appName = process.env.NEXT_PUBLIC_APP_NAME || "Intimera",
 	planName = "Premium",
 	dashboardUrl,
 }) => (

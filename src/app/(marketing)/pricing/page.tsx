@@ -3,16 +3,29 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Link from "next/link";
 import { Heart } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
-export const metadata = {
-	title: "Pricing | Intimera",
-	description: "Invest in your relationship wellness with Intimera Premium.",
-};
+export async function generateMetadata() {
+	const t = await getTranslations("marketing.pricing");
+	const tCommon = await getTranslations("common");
+	return {
+		title: `${tCommon("brandName")} | Pricing`,
+		description: t("subheadline"),
+	};
+}
 
 export default async function PricingPage() {
 	const session = await auth.api.getSession({
 		headers: await headers()
 	});
+	
+	const t = await getTranslations("marketing.pricing");
+	const tCommon = await getTranslations("common");
+	const tNav = await getTranslations("nav");
+	const tAuth = await getTranslations("auth");
+	const tFaq = await getTranslations("faq");
+
+	const brand = tCommon("brandName");
 
 	return (
 		<div className="flex flex-col min-h-screen">
@@ -21,15 +34,21 @@ export default async function PricingPage() {
 				<div className="container mx-auto px-4 h-16 flex items-center justify-between">
 					<Link href="/" className="flex items-center space-x-2 font-semibold text-slate-900 dark:text-white">
 						<Heart className="w-5 h-5 text-indigo-500" />
-						<span>Intimera</span>
+						<span>{brand}</span>
 					</Link>
 					<div className="flex items-center space-x-4">
 						{session?.user ? (
-							<Link href="/dashboard" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">Dashboard</Link>
+							<Link href="/dashboard" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+								{tNav("dashboard")}
+							</Link>
 						) : (
 							<>
-								<Link href="/login" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">Login</Link>
-								<Link href="/register" className="text-sm font-medium px-4 py-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-700">Get Started</Link>
+								<Link href="/login" className="text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
+									{tAuth("signIn")}
+								</Link>
+								<Link href="/register" className="text-sm font-medium px-4 py-2 rounded-full bg-indigo-600 text-white hover:bg-indigo-700">
+									{tAuth("signUp")}
+								</Link>
 							</>
 						)}
 					</div>
@@ -40,10 +59,12 @@ export default async function PricingPage() {
 				<div className="container mx-auto px-4">
 					<div className="text-center max-w-3xl mx-auto mb-16">
 						<h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6 tracking-tight">
-							Invest in Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600">Relationship Wellness</span>
+							{t.rich("headline", {
+								highlight: (chunks) => <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600">{chunks}</span>
+							})}
 						</h1>
 						<p className="text-lg text-slate-600 dark:text-slate-400">
-							Choose the plan that fits your journey. Whether you're exploring on your own or deepening your connection with a partner, we have you covered.
+							{t("subheadline")}
 						</p>
 					</div>
 
@@ -51,20 +72,20 @@ export default async function PricingPage() {
 
 					{/* FAQ Section */}
 					<div className="max-w-3xl mx-auto mt-32">
-						<h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-12">Frequently Asked Questions</h2>
+						<h2 className="text-3xl font-bold text-center text-slate-900 dark:text-white mb-12">
+							{tFaq("title")}
+						</h2>
 						<div className="space-y-8">
-							<div>
-								<h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Can I cancel my subscription at any time?</h4>
-								<p className="text-slate-600 dark:text-slate-400">Yes, you can cancel your subscription at any time from your account settings. You'll retain access to premium features until the end of your current billing cycle.</p>
-							</div>
-							<div>
-								<h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">How does the Couples plan work?</h4>
-								<p className="text-slate-600 dark:text-slate-400">The Couples plan allows you to link two Intimera accounts. Both users get full Premium access, plus exclusive features like shared timelines, dual assessments, and joint exercises.</p>
-							</div>
-							<div>
-								<h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">Is my data private and secure?</h4>
-								<p className="text-slate-600 dark:text-slate-400">Absolutely. Your intimacy data and forum posts are highly protected. Forum posts can be made completely anonymously, and we use industry-standard encryption for all your personal information.</p>
-							</div>
+							{[5, 6, 7].map((i) => (
+								<div key={i}>
+									<h4 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
+										{tFaq(`q${i}` as any)}
+									</h4>
+									<p className="text-slate-600 dark:text-slate-400">
+										{tFaq(`a${i}` as any, { brand })}
+									</p>
+								</div>
+							))}
 						</div>
 					</div>
 				</div>
@@ -73,7 +94,7 @@ export default async function PricingPage() {
 			{/* Footer */}
 			<footer className="border-t border-slate-200 dark:border-slate-800 py-8">
 				<div className="container mx-auto px-4 text-center text-sm text-slate-500 dark:text-slate-400">
-					© {new Date().getFullYear()} Intimera. All rights reserved.
+					© {new Date().getFullYear()} {brand}. {tCommon("rightsReserved" as any) || "All rights reserved."}
 				</div>
 			</footer>
 		</div>

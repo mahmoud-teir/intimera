@@ -18,40 +18,47 @@ const amiri = Amiri({
 	variable: "--font-arabic" 
 });
 
-export const metadata: Metadata = {
-	title: {
-		default: "Intimera — Your Private Wellness Sanctuary",
-		template: "%s | Intimera",
-	},
-	description:
-		"A science-backed, AI-enhanced intimate wellness platform for couples. Learn, practice, and grow together in a safe, private space.",
-	keywords: [
-		"intimate wellness",
-		"couples wellness",
-		"relationship health",
-		"sexual education",
-		"couples therapy",
-	],
-	authors: [{ name: "Intimera" }],
-	openGraph: {
-		type: "website",
-		locale: "en_US",
-		siteName: "Intimera",
-		title: "Intimera — Your Private Wellness Sanctuary",
+import { getTranslations } from "next-intl/server";
+
+export async function generateMetadata() {
+	const t = await getTranslations("common");
+	const brand = t("brandName");
+	
+	return {
+		title: {
+			default: `${brand} — Your Private Wellness Sanctuary`,
+			template: `%s | ${brand}`,
+		},
 		description:
-			"Science-backed intimate wellness for couples. Learn, practice, and grow together.",
-	},
-	twitter: {
-		card: "summary_large_image",
-		title: "Intimera — Your Private Wellness Sanctuary",
-		description:
-			"Science-backed intimate wellness for couples. Learn, practice, and grow together.",
-	},
-	robots: {
-		index: true,
-		follow: true,
-	},
-};
+			"A science-backed, AI-enhanced intimate wellness platform for couples. Learn, practice, and grow together in a safe, private space.",
+		keywords: [
+			"intimate wellness",
+			"couples wellness",
+			"relationship health",
+			"sexual education",
+			"couples therapy",
+		],
+		authors: [{ name: brand }],
+		openGraph: {
+			type: "website",
+			locale: "en_US",
+			siteName: brand,
+			title: `${brand} — Your Private Wellness Sanctuary`,
+			description:
+				"Science-backed intimate wellness for couples. Learn, practice, and grow together.",
+		},
+		twitter: {
+			card: "summary_large_image",
+			title: `${brand} — Your Private Wellness Sanctuary`,
+			description:
+				"Science-backed intimate wellness for couples. Learn, practice, and grow together.",
+		},
+		robots: {
+			index: true,
+			follow: true,
+		},
+	};
+}
 
 export default async function RootLayout({
 	children,
@@ -74,6 +81,7 @@ export default async function RootLayout({
 		<html
 			lang={safeLocale}
 			dir={dir}
+			data-scroll-behavior="smooth"
 			suppressHydrationWarning
 			className={cn("font-sans", geist.variable, amiri.variable)}
 		>

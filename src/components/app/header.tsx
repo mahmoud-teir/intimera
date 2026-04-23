@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/navigation";
@@ -19,6 +20,7 @@ import { Button } from "@/components/ui/button";
 
 export function Header() {
 	const router = useRouter();
+	const t = useTranslations("common");
 
 	const handleSignOut = async () => {
 		await authClient.signOut();
@@ -32,7 +34,7 @@ export function Header() {
 					<Menu className="w-5 h-5" />
 				</Button>
 				<span className="text-lg font-medium text-sand-900 dark:text-sand-100 border border-sand-200 dark:border-white/10 rounded-full px-3 py-1 bg-white dark:bg-obsidian shadow-sm">
-					Intimera
+					{t("brandName")}
 				</span>
 			</div>
 			

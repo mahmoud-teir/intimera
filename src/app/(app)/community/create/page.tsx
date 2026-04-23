@@ -7,9 +7,12 @@ import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata() {
 	const t = await getTranslations("community");
+	const tCommon = await getTranslations("common");
+	const brand = tCommon("brandName");
+	
 	return {
-		title: t("createMetaTitle"),
-		description: t("createMetaDescription"),
+		title: t("createMetaTitle", { brand }),
+		description: t("createMetaDescription", { brand }),
 	};
 }
 

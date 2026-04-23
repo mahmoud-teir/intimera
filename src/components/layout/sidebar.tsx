@@ -25,6 +25,7 @@ interface SidebarProps {
 export function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
 	const pathname = usePathname();
 	const t = useTranslations("nav");
+	const tCommon = useTranslations("common");
 
 	const navItems = [
 		{ name: t("dashboard"), href: "/dashboard", icon: LayoutDashboard },
@@ -59,7 +60,7 @@ export function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
 				{/* Header */}
 				<div className="h-16 flex items-center justify-between px-6 border-b border-sand-200 dark:border-sand-800 shrink-0">
 					<Link href="/dashboard" className="text-xl font-light tracking-tight text-sand-900 dark:text-sand-100">
-						Intimera
+						{tCommon("brandName")}
 					</Link>
 					<Button 
 						variant="ghost" 

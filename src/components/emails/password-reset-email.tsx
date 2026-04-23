@@ -9,7 +9,7 @@ interface PasswordResetEmailProps {
 
 export const PasswordResetEmail: React.FC<PasswordResetEmailProps> = ({
 	userName = "there",
-	appName = "Intimera",
+	appName = process.env.NEXT_PUBLIC_APP_NAME || "Intimera",
 	resetUrl,
 }) => (
 	<Html>

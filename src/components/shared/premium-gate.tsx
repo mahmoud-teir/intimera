@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Lock, Sparkles } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface PremiumGateProps {
 	userRole: string | undefined;
@@ -11,9 +12,10 @@ interface PremiumGateProps {
 export function PremiumGate({ 
 	userRole, 
 	allowedRoles = ["PREMIUM", "COUPLES", "ADMIN"],
-	fallbackMessage = "Unlock this feature with Intimera Premium.",
+	fallbackMessage,
 	children 
 }: PremiumGateProps) {
+	const t = useTranslations("common");
 	const isAllowed = userRole && allowedRoles.includes(userRole.toUpperCase());
 
 	if (isAllowed) {
@@ -36,7 +38,7 @@ export function PremiumGate({
 				</h3>
 				
 				<p className="text-slate-600 dark:text-slate-400 mb-6 max-w-md">
-					{fallbackMessage}
+					{fallbackMessage || `Unlock this feature with ${t("brandName")} Premium.`}
 				</p>
 				
 				<Link 

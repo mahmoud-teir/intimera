@@ -9,10 +9,12 @@ import { useTranslations } from "next-intl";
 
 export function SubscriptionControls({ currentRole }: { currentRole: string | undefined }) {
 	const t = useTranslations("subscription");
+	const tCommon = useTranslations("common");
+	const brand = tCommon("brandName");
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
 	const isPremium = currentRole === "PREMIUM" || currentRole === "COUPLES" || currentRole === "ADMIN";
-	const planName = currentRole === "COUPLES" ? t("couplesPlan") : currentRole === "PREMIUM" ? t("premiumPlan") : t("freePlan");
+	const planName = currentRole === "COUPLES" ? t("couplesPlan", { brand }) : currentRole === "PREMIUM" ? t("premiumPlan", { brand }) : t("freePlan", { brand });
 
 	const handleManageBilling = async () => {
 		setIsLoading(true);
@@ -63,7 +65,7 @@ export function SubscriptionControls({ currentRole }: { currentRole: string | un
 
 					<p className="text-sand-600 dark:text-sand-400 mb-6 max-w-sm">
 						{isPremium 
-							? t("premiumBenefit")
+							? t("premiumBenefit", { brand })
 							: t("freeBenefit")
 						}
 					</p>

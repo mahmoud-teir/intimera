@@ -19,6 +19,7 @@ type LoginValues = z.infer<typeof loginSchema>;
 
 export function LoginCard() {
 	const t = useTranslations("auth.login");
+	const tCommon = useTranslations("common");
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
@@ -75,7 +76,7 @@ export function LoginCard() {
 				{/* Header */}
 				<div className="flex flex-col items-center text-center gap-5">
 					<span className="text-2xl font-light tracking-widest text-[--text-base]">
-						Intimera<span className="text-terra-500">.</span>
+						{tCommon("brandName")}<span className="text-terra-500">.</span>
 					</span>
 					<div className="space-y-2">
 						<h1 className="text-4xl font-light text-[--text-base] tracking-tight">{t("title")}</h1>

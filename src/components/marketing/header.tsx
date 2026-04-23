@@ -7,6 +7,7 @@ import { useTheme } from "next-themes";
 import { useSession } from "@/lib/auth-client";
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/i18n/language-switcher";
+import { Logo } from "@/components/brand/logo";
 
 export function Header() {
 	const { data: session } = useSession();
@@ -30,8 +31,8 @@ export function Header() {
 		>
 			<div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-20">
 				{/* Logo */}
-				<Link href="/" className="text-2xl font-light tracking-[0.1em] text-[--text-base]">
-					Intimera<span className="text-terra-500">.</span>
+				<Link href="/" className="transition-transform hover:scale-[1.02] active:scale-[0.98]">
+					<Logo size="md" />
 				</Link>
 
 				{/* Nav */}

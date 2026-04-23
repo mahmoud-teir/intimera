@@ -7,9 +7,12 @@ import { getTranslations } from "next-intl/server";
 export async function generateMetadata({ params }: { params: Promise<{ topic: string }> }) {
 	const resolvedParams = await params;
 	const t = await getTranslations("community");
+	const tCommon = await getTranslations("common");
+	const brand = tCommon("brandName");
+	
 	return {
-		title: t("metaTitle", { topic: resolvedParams.topic }),
-		description: t("metaDescription", { topic: resolvedParams.topic }),
+		title: t("metaTitle", { topic: resolvedParams.topic, brand }),
+		description: t("metaDescription", { topic: resolvedParams.topic, brand }),
 	};
 }
 

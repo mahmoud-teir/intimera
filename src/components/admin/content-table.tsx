@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { 
 	CheckCircle, 
@@ -21,19 +22,13 @@ import {
 type ContentStatus = "DRAFT" | "PUBLISHED" | "ARCHIVED" | "PENDING";
 type SubscriptionTier = "FREE" | "PREMIUM" | "COUPLES";
 
-const ContentStatusMap = {
-	DRAFT: "Draft",
-	PUBLISHED: "Curated",
-	ARCHIVED: "Archived",
-	PENDING: "Awaiting",
-};
-
 interface ContentRow {
 	id: string;
 	title: string;
 	slug: string;
 	status: ContentStatus;
 	category: string;
+	categorySlug: string;
 	tier: SubscriptionTier;
 	bookmarks: number;
 	coverImage: string | null;
@@ -49,6 +44,7 @@ interface AdminContentTableProps {
 	onApprove: (id: string) => Promise<void>;
 }
 
+
 export function AdminContentTable({ 
 	content, 
 	viewerRole, 
@@ -57,9 +53,19 @@ export function AdminContentTable({
 	onDelete, 
 	onApprove 
 }: AdminContentTableProps) {
+	const t = useTranslations("admin");
+	const tCommon = useTranslations();
 	const [filter, setFilter] = useState<"all" | "published" | "draft" | "pending">("all");
 	const [search, setSearch] = useState("");
 	const [isPending, startTransition] = useTransition();
+	const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
+
+	const ContentStatusMap = {
+		DRAFT: t("contentPage.status.DRAFT"),
+		PUBLISHED: t("contentPage.status.PUBLISHED"),
+		ARCHIVED: t("contentPage.status.ARCHIVED"),
+		PENDING: t("contentPage.status.PENDING"),
+	};
 
 	const isAdmin = viewerRole === "ADMIN";
 
@@ -85,7 +91,7 @@ export function AdminContentTable({
 					<Search className="absolute left-6 top-1/2 -translate-y-1/2 w-4 h-4 text-foreground/20 group-focus-within:text-terra-500 transition-colors" />
 					<input
 						type="search"
-						placeholder="Search the archive for assets..."
+						placeholder={t("contentPage.searchArchive")}
 						value={search}
 						onChange={(e) => setSearch(e.target.value)}
 						className="w-full bg-subtle/50 border-none rounded-full px-14 py-4 text-sm text-foreground placeholder:text-foreground/20 focus:outline-none focus:ring-2 focus:ring-terra-500/10 transition-all font-medium"
@@ -97,25 +103,25 @@ export function AdminContentTable({
 							key={f}
 							type="button"
 							onClick={() => setFilter(f)}
-							className={`px-6 py-2.5 text-[10px] font-bold uppercase tracking-widest rounded-full transition-all shrink-0 ${
+							className={`px-6 py-2.5 text-xs font-bold uppercase tracking-widest rounded-full transition-all shrink-0 ${
 								filter === f
 									? "bg-terra-500 text-white shadow-lg shadow-terra-500/20"
 									: "text-foreground/40 hover:text-foreground hover:bg-background/40"
 							}`}
 						>
-							{f}
+							{t(`contentPage.${f}` as any)}
 							{f === "pending" && pendingCount > 0 && (
-								<span className="ml-2 px-1.5 py-0.5 bg-background/20 rounded-full text-[8px]">{pendingCount}</span>
+								<span className="ms-2 px-1.5 py-0.5 bg-background/20 rounded-full text-[10px]">{pendingCount}</span>
 							)}
 						</button>
 					))}
 				</div>
 				<Link
 					href="/admin/content/new"
-					className="w-full lg:w-auto flex items-center justify-center gap-2 bg-terra-500 hover:bg-terra-600 text-white px-8 py-4 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] shadow-lg shadow-terra-500/20 transition-all hover:-translate-y-0.5 active:translate-y-0 shrink-0"
+					className="w-full lg:w-auto flex items-center justify-center gap-2 bg-terra-500 hover:bg-terra-600 text-white px-8 py-4 rounded-full text-xs font-bold uppercase tracking-[0.2em] shadow-lg shadow-terra-500/20 transition-all hover:-translate-y-0.5 active:translate-y-0 shrink-0"
 				>
 					<Plus className="w-4 h-4" />
-					New Asset
+					{t("contentPage.newAsset")}
 				</Link>
 			</div>
 
@@ -123,7 +129,7 @@ export function AdminContentTable({
 			<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
 				{filtered.length === 0 ? (
 					<div className="col-span-full bg-subtle/20 rounded-[48px] py-40 text-center border border-dashed border-border/20">
-						<p className="text-foreground/40 font-medium italic">The vault is quiet. No assets identified.</p>
+						<p className="text-foreground/60 font-semibold italic">{t("contentPage.noAssets")}</p>
 					</div>
 				) : (
 					filtered.map((item) => (
@@ -141,26 +147,30 @@ export function AdminContentTable({
 										<FileText className="w-6 h-6 text-amber-500" />
 									</div>
 								)}
-								<div className={`px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-widest border ${
+								<div className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest border ${
 									item.status === "PUBLISHED" 
-										? "bg-sage-500/5 text-sage-600 dark:text-sage-400 border-sage-500/10" 
+										? "bg-sage-500/10 text-sage-600 dark:text-sage-400 border-sage-500/20" 
 										: item.status === "PENDING"
-										? "bg-amber-500/5 text-amber-600 dark:text-amber-400 border-amber-500/10 animate-pulse"
-										: "bg-foreground/5 text-foreground/40 border-border/5"
+										? "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20 animate-pulse"
+										: "bg-foreground/10 text-foreground/60 border-border/10"
 								}`}>
 									{ContentStatusMap[item.status]}
 								</div>
 							</div>
 
 							<div className="flex-1 space-y-4">
-								<p className="text-[10px] font-bold text-terra-500 uppercase tracking-[0.3em]">{item.category}</p>
-								<h3 className="text-xl font-light tracking-tight text-foreground leading-tight group-hover:text-terra-500 transition-colors">
+								<p className="text-xs font-bold text-terra-500 uppercase tracking-[0.3em]">
+									{tCommon(`library.cat_${item.categorySlug}` as any) !== `library.cat_${item.categorySlug}`
+										? tCommon(`library.cat_${item.categorySlug}` as any)
+										: item.category}
+								</p>
+								<h3 className="text-xl font-medium tracking-tight text-foreground leading-tight group-hover:text-terra-500 transition-colors">
 									{item.title}
 								</h3>
-								<div className="flex items-center gap-4 text-[10px] font-bold text-foreground/30 uppercase tracking-widest">
+								<div className="flex items-center gap-4 text-xs font-bold text-foreground/40 uppercase tracking-widest">
 									<span className="flex items-center gap-1.5">
 										<Bookmark className="w-3 h-3" />
-										{item.bookmarks} Saves
+										{item.bookmarks} {t("contentPage.saves")}
 									</span>
 									<span className="w-1 h-1 bg-border/40 rounded-full" />
 									<span className="flex items-center gap-1.5">
@@ -175,7 +185,7 @@ export function AdminContentTable({
 									<Link
 										href={`/admin/content/${item.id}/edit`}
 										className="p-3 rounded-2xl bg-subtle text-foreground/40 hover:text-terra-500 hover:bg-terra-500/10 transition-all"
-										title="Edit Asset"
+										title={t("contentPage.editAsset")}
 									>
 										<Edit3 className="w-4 h-4" />
 									</Link>
@@ -183,7 +193,7 @@ export function AdminContentTable({
 										<button
 											onClick={() => startTransition(() => onApprove(item.id))}
 											className="p-3 rounded-2xl bg-terra-500 text-white shadow-lg shadow-terra-500/20 hover:scale-105 transition-all"
-											title="Approve & Publish"
+											title={t("contentPage.approvePublish")}
 										>
 											<CheckCircle className="w-4 h-4" />
 										</button>
@@ -192,7 +202,7 @@ export function AdminContentTable({
 										<button
 											onClick={() => startTransition(() => onUnpublish(item.id))}
 											className="p-3 rounded-2xl bg-subtle text-foreground/40 hover:text-amber-500 hover:bg-amber-500/10 transition-all"
-											title="Retract Asset"
+											title={t("contentPage.retractAsset")}
 										>
 											<EyeOff className="w-4 h-4" />
 										</button>
@@ -201,7 +211,7 @@ export function AdminContentTable({
 										<button
 											onClick={() => startTransition(() => onPublish(item.id))}
 											className="p-3 rounded-2xl bg-subtle text-foreground/40 hover:text-sage-500 hover:bg-sage-500/10 transition-all"
-											title="Curate Asset"
+											title={t("contentPage.curateAsset")}
 										>
 											<Eye className="w-4 h-4" />
 										</button>
@@ -210,24 +220,52 @@ export function AdminContentTable({
 								
 								<button
 									disabled={isPending}
-									onClick={() => {
-										if (confirm(`Remove asset "${item.title}"?`)) {
-											startTransition(() => onDelete(item.id));
-										}
-									}}
-									className="text-[10px] font-bold text-foreground/20 hover:text-terra-500 uppercase tracking-widest transition-colors flex items-center gap-2 group/delete"
+									onClick={() => setConfirmDeleteId(item.id)}
+									className="text-xs font-bold text-foreground/40 hover:text-terra-500 uppercase tracking-widest transition-colors flex items-center gap-2 group/delete"
 								>
-									Discard
+									{t("contentPage.discard")}
 									<ChevronRight className="w-3 h-3 group-hover/delete:translate-x-1 transition-transform" />
 								</button>
 							</div>
+
+							{confirmDeleteId === item.id && (
+								<div className="absolute inset-0 z-20 glass-morphism rounded-[48px] flex flex-col items-center justify-center p-10 text-center animate-in fade-in zoom-in duration-300">
+									<div className="w-16 h-16 rounded-full bg-terra-500/10 flex items-center justify-center mb-6">
+										<Trash2 className="w-8 h-8 text-terra-500" />
+									</div>
+									<h4 className="text-lg font-bold text-foreground mb-2">{t("contentPage.discardTitle")}</h4>
+									<p className="text-xs font-semibold text-foreground/40 leading-relaxed mb-8">
+										{t("contentPage.discardConfirmText", { title: item.title })}
+									</p>
+									<div className="flex flex-col w-full gap-3">
+										<button
+											disabled={isPending}
+											onClick={() => {
+												startTransition(async () => {
+													await onDelete(item.id);
+													setConfirmDeleteId(null);
+												});
+											}}
+											className="w-full py-4 rounded-full bg-terra-500 text-white font-bold text-[10px] uppercase tracking-[0.2em] shadow-lg shadow-terra-500/20 hover:bg-terra-600 transition-all disabled:opacity-50"
+										>
+											{t("contentPage.confirmDiscard")}
+										</button>
+										<button
+											onClick={() => setConfirmDeleteId(null)}
+											className="w-full py-4 rounded-full bg-background/50 text-foreground/40 font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-background transition-all"
+										>
+											{tCommon("common.cancel")}
+										</button>
+									</div>
+								</div>
+							)}
 						</div>
 					))
 				)}
 			</div>
 
-			<div className="flex items-center justify-center pt-12 text-[10px] font-bold text-foreground/20 uppercase tracking-[0.4em]">
-				Archive Integrity: Optimal
+			<div className="flex items-center justify-center pt-12 text-sm font-bold text-foreground/40 uppercase tracking-[0.4em]">
+				{t("common.archiveOptimal")}
 			</div>
 		</div>
 	);

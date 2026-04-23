@@ -5,6 +5,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 
 export async function updateProfile(formData: FormData) {
 	try {
@@ -131,12 +132,16 @@ export async function exportUserData() {
 		if (!user) {
 			return { success: false, error: "User not found" };
 		}
+		
+		const tCommon = await getTranslations("common");
+		const brand = tCommon("brandName");
+		const tPrivacy = await getTranslations("privacy");
 
 		const exportData = {
 			_meta: {
 				exportedAt: new Date().toISOString(),
 				schemaVersion: "1.0",
-				notice: "This export contains all personal data held by Intimera. Sensitive fields (notes, messages) are included in decrypted form.",
+				notice: tPrivacy("exportNotice", { brand }),
 			},
 			profile: {
 				name: user.name,

@@ -5,7 +5,7 @@ import { CoupleInviteAcceptCard } from "@/components/couple/invite-accept-card";
 import { getTranslations } from "next-intl/server";
 
 export async function generateMetadata() {
-	const t = await getTranslations("checkIn");
+	const t = await getTranslations("couple.invite");
 	return {
 		title: t("acceptTitle"),
 		description: t("acceptDescription"),
@@ -26,7 +26,7 @@ export default async function CoupleInvitePage({
 	}
 
 	const code = (await searchParams).code as string;
-	const t = await getTranslations("checkIn");
+	const t = await getTranslations("couple.invite");
 
 	if (!code) {
 		return (

@@ -24,6 +24,7 @@ type RegisterValues = z.infer<typeof registerSchema>;
 
 export function RegisterCard() {
 	const t = useTranslations("auth.register");
+	const tCommon = useTranslations("common");
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const [isLoading, setIsLoading] = useState(false);
@@ -73,7 +74,7 @@ export function RegisterCard() {
 				{/* Header */}
 				<header className="mb-10 text-center">
 					<p className="text-2xl font-light tracking-widest text-[--text-base] mb-6">
-						Intimera<span className="text-terra-500">.</span>
+						{tCommon("brandName")}<span className="text-terra-500">.</span>
 					</p>
 					<h1 className="text-4xl font-light text-[--text-base] mb-3 leading-tight">
 						{t("title")}

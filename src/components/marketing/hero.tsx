@@ -18,21 +18,21 @@ export function Hero() {
 		>
 			{/* Ambient glows */}
 			<div className="absolute inset-0 pointer-events-none overflow-hidden">
-				<div className="absolute top-[-10%] left-[-10%] w-[45%] h-[45%] bg-terra-500/8 dark:bg-terra-500/5 rounded-full blur-[140px]" />
-				<div className="absolute bottom-[-10%] right-[-5%] w-[35%] h-[35%] bg-sage-500/6 dark:bg-sage-500/4 rounded-full blur-[120px]" />
+				<div className="absolute top-[-10%] start-[-10%] w-[45%] h-[45%] bg-terra-500/8 dark:bg-terra-500/5 rounded-full blur-[140px]" />
+				<div className="absolute bottom-[-10%] end-[-5%] w-[35%] h-[35%] bg-sage-500/6 dark:bg-sage-500/4 rounded-full blur-[120px]" />
 			</div>
 
 			<div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
 				{/* Eyebrow */}
 				<div className="inline-flex items-center gap-2 mb-10 px-4 py-2 rounded-full bg-terra-50 dark:bg-terra-500/10 border border-terra-200/40 dark:border-terra-500/20">
 					<span className="text-terra-500 text-lg">♡</span>
-					<span className="text-sm text-terra-700 dark:text-terra-400 font-medium tracking-wide">
+					<span className="text-sm text-terra-700 dark:text-terra-400 font-medium tracking-wide rtl:tracking-normal">
 						{t("eyebrow")}
 					</span>
 				</div>
 
 				{/* Headline */}
-				<h1 className="text-6xl md:text-8xl font-light text-[--text-base] tracking-tight leading-[1.05] mb-10">
+				<h1 className="text-6xl md:text-8xl font-light text-[--text-base] tracking-tight rtl:tracking-normal leading-[1.05] mb-10">
 					{t.rich("headline", {
 						highlight: (chunks) => <em className="text-terra-500 not-italic font-light">{chunks}</em>
 					})}

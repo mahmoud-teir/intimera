@@ -62,7 +62,7 @@ export function Features() {
 			<section id="features" className="py-40 bg-[--bg-base]">
 				<div className="max-w-7xl mx-auto px-6 lg:px-8">
 					<div className="text-center mb-24">
-						<span className="text-xs tracking-[0.2em] text-terra-500 uppercase font-bold mb-6 block">
+						<span className="text-xs tracking-[0.2em] rtl:tracking-normal text-terra-500 uppercase font-bold mb-6 block">
 							{t("eyebrow")}
 						</span>
 						<h2 className="text-5xl md:text-6xl font-light text-[--text-base] tracking-tight leading-tight">
@@ -95,9 +95,9 @@ export function Features() {
 			<section className="py-24 bg-sand-100/50 dark:bg-obsidian-dim">
 				<div className="max-w-6xl mx-auto px-6 lg:px-8">
 					<div className="bg-white dark:bg-sanctum rounded-[3.5rem] p-12 md:p-24 shadow-[0_40px_100px_rgba(28,20,16,0.04)] relative overflow-hidden">
-						<div className="absolute -bottom-20 -right-20 w-[500px] h-[500px] bg-terra-100/40 dark:bg-terra-500/5 rounded-full blur-[120px] pointer-events-none" />
+						<div className="absolute -bottom-20 -end-20 w-[500px] h-[500px] bg-terra-100/40 dark:bg-terra-500/5 rounded-full blur-[120px] pointer-events-none" />
 						<div className="relative z-10 max-w-2xl mx-auto text-center flex flex-col items-center">
-							<span className="text-xs tracking-[0.2em] text-[--text-faint] uppercase font-bold mb-8 block">
+							<span className="text-xs tracking-[0.2em] rtl:tracking-normal text-[--text-faint] uppercase font-bold mb-8 block">
 								{t("teaser.eyebrow")}
 							</span>
 							<h2 className="text-5xl md:text-6xl font-light text-[--text-base] mb-10 leading-[1.1]">
@@ -131,7 +131,7 @@ export function Features() {
 								key={test.name}
 								className="bg-white dark:bg-sanctum rounded-[2.5rem] p-12 shadow-[0_20px_60px_rgba(28,20,16,0.03)] relative transition-all hover:-translate-y-2"
 							>
-								<span className="absolute top-10 right-10 rtl:right-auto rtl:left-10 text-6xl text-sand-100 dark:text-white/5 font-serif leading-none select-none italic">
+								<span className="absolute top-10 end-10 text-6xl text-sand-100 dark:text-white/5 font-serif leading-none select-none italic">
 									"
 								</span>
 								<p className="text-[--text-muted] leading-relaxed mb-10 mt-4 relative z-10 text-lg font-light italic">

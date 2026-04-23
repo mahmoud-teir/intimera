@@ -87,8 +87,8 @@ export function Pricing() {
 									: "bg-white dark:bg-white/5 shadow-[0_20px_60px_rgba(28,20,16,0.03)]"
 							}`}>
 								{plan.highlighted && (
-									<div className="absolute top-10 right-10 rtl:right-auto rtl:left-10">
-										<span className="bg-terra-500 text-white text-[10px] font-bold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full">
+									<div className="absolute top-10 end-10">
+										<span className="bg-terra-500 text-white text-[10px] font-bold tracking-[0.2em] rtl:tracking-normal uppercase px-4 py-1.5 rounded-full">
 											{t("plans.premium.popular" as any) || "POPULAR"}
 										</span>
 									</div>

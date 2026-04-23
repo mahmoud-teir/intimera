@@ -59,7 +59,7 @@ export function Logo({
 			{/* Typography */}
 			{showText && (
 				<span className={cn(
-					"font-light tracking-[0.1em] transition-colors",
+					"font-light tracking-[0.1em] rtl:tracking-normal transition-colors",
 					font,
 					variant === "white" ? "text-white" : "text-[--text-base]"
 				)}>

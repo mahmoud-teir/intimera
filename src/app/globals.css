@@ -158,6 +158,7 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 /* ── Semantic surface tokens — adapt to theme ──────── */
@@ -589,11 +590,6 @@ body {
   border-left: 1px solid hsl(var(--border));
   left: auto;
   right: 0;
-}
-
-/* Flip icon-before-text patterns */
-[dir="rtl"] .flex-row {
-  flex-direction: row-reverse;
 }
 
 /* Input prefix icons */

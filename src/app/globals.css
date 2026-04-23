@@ -1,4 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@uploadthing/react/styles.css";
 
 /*
  * ═══════════════════════════════════════════════════════
@@ -79,30 +83,137 @@
   --duration-fast: 200ms;
   --duration-normal: 300ms;
   --duration-slow: 500ms;
+
+  /* ── Semantic Adaptive Tokens (light ↔ dark via CSS vars) ── */
+  /* NOTE: Do NOT name these --color-base/surface/subtle because Tailwind v4
+     generates text-base / text-surface color utilities from --color-* names,
+     which silently override Tailwind's built-in text-base (font-size) and
+     explicit text-[#xxx] color classes. Use --color-bg-* prefix instead.   */
+  --color-bg-base:    var(--bg-base);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-subtle:  var(--bg-subtle);
+  --color-tx:         var(--text-base);
+  --color-tx-muted:   var(--text-muted);
+  --color-tx-faint:   var(--text-faint);
+  --color-border:     var(--border-base);
+
+  /* ── Sand Scale (warm beige — used throughout UI) ─────────── */
+  /* CRITICAL: Must be defined here or bg-sand-*, text-sand-* are invalid */
+  --color-sand-50:  #FAF8F5;
+  --color-sand-100: #F3EFE9;
+  --color-sand-200: #E8DDD0;
+  --color-sand-300: #D9C8B4;
+  --color-sand-400: #C9B096;
+  --color-sand-500: #B8967A;
+  --color-sand-600: #9A7A5E;
+  --color-sand-700: #7A5E45;
+  --color-sand-800: #5C4432;
+  --color-sand-900: #3D2C1E;
+  --color-sand-950: #1E150E;
+
+  /* ── Terra Scale (terracotta — primary accent / CTAs) ──────── */
+  --color-terra-50:  #FDF4F0;
+  --color-terra-100: #FAE6DC;
+  --color-terra-200: #F5CCBA;
+  --color-terra-300: #EDA98E;
+  --color-terra-400: #E48160;
+  --color-terra-500: #D85F3C;
+  --color-terra-600: #C04E2E;
+  --color-terra-700: #9E3D22;
+  --color-terra-800: #7A2F1A;
+  --color-terra-900: #5A2213;
+  --color-terra-950: #3A140A;
+
+  /* ── Sage Scale (green — wellness / positive) ──────────────── */
+  --color-sage-50:  #F3F7F4;
+  --color-sage-100: #E4EEE7;
+  --color-sage-200: #C8DDCD;
+  --color-sage-300: #A3C4AA;
+  --color-sage-400: #76A87F;
+  --color-sage-500: #548B5A;
+  --color-sage-600: #3F7045;
+  --color-sage-700: #305535;
+  --color-sage-800: #243D27;
+  --color-sage-900: #192A1B;
+  --color-sage-950: #0E180F;
+
+  /* ── Amber Scale (gold — premium / warnings) ───────────────── */
+  --color-amber-50:  #FFFBEB;
+  --color-amber-100: #FEF3C7;
+  --color-amber-200: #FDE68A;
+  --color-amber-300: #FCD34D;
+  --color-amber-400: #FBBF24;
+  --color-amber-500: #F59E0B;
+  --color-amber-600: #D97706;
+  --color-amber-700: #B45309;
+  --color-amber-800: #92400E;
+  --color-amber-900: #78350F;
+  --color-amber-950: #451A03;
 }
 
-/* ── Google Fonts ──────────────────────────────────── */
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-/*
- ---break---
- */
 @custom-variant dark (&:is(.dark *));
 
-/* ── Base Styles ───────────────────────────────────── */
+/* ── Base HTML ──────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Semantic surface tokens — adapt to theme ──────── */
+:root {
+  --bg-base:        #FAF8F5;   /* warm off-white — light mode page background */
+  --bg-surface:     #FFFFFF;   /* card / panel background */
+  --bg-subtle:      #F3EFE9;   /* subtle section backgrounds */
+  --bg-card:        rgba(255, 255, 255, 0.7);
+  --bg-accent-subtle: rgba(212, 165, 116, 0.05);
+  --text-base:      #1C1410;   /* deep warm near-black */
+  --text-muted:     #6B5E54;   /* muted body text */
+  --text-faint:     #9A8D82;   /* placeholder / captions */
+  --border-base:    rgba(212, 165, 116, 0.25);
+  --scrollbar-track: #F3EFE9;
+  --scrollbar-thumb: #D4A574;
+}
+
+.dark {
+  --bg-base:        var(--color-obsidian);     /* #0F0D13 */
+  --bg-surface:     var(--color-sanctum);      /* #1A1720 */
+  --bg-subtle:      var(--color-alcove);       /* #1D1A21 */
+  --bg-card:        rgba(26, 23, 32, 0.6);
+  --bg-accent-subtle: rgba(212, 165, 116, 0.05);
+  --text-base:      var(--color-ivory);        /* #E7E0E9 */
+  --text-muted:     var(--color-linen);        /* #CEC4CB */
+  --text-faint:     var(--color-muted);        /* #9A9198 */
+  --border-base:    rgba(212, 165, 116, 0.12);
+  --scrollbar-track: var(--color-obsidian);
+  --scrollbar-thumb: var(--color-smoke);
+}
+
 body {
-  background-color: var(--color-obsidian);
-  color: var(--color-ivory);
+  background-color: var(--bg-base)   !important;
+  color:            var(--text-base) !important;
   font-family: var(--font-sans);
   line-height: 1.6;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
+
+/* ── Semantic Text Utilities ─────────────────────────────
+   Use these instead of hardcoded text-sand-* / text-slate-*
+   They automatically adapt between light and dark mode.
+   ─────────────────────────────────────────────────────── */
+
+/* Primary text — headings, main content */
+.text-primary   { color: var(--text-base);  }
+
+/* Secondary / body text — descriptions, body copy */
+.text-secondary { color: var(--text-muted); }
+
+/* Faint / hint text — captions, placeholders, timestamps */
+.text-hint      { color: var(--text-faint); }
+
+/* Inverse — white text that always stays white (on colored buttons etc.) */
+.text-inverse   { color: #FFFFFF; }
+
 
 /* ── Selection ──────────────────────────────────────── */
 ::selection {
@@ -123,11 +234,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-obsidian);
+  background: var(--scrollbar-track);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-smoke);
+  background: var(--scrollbar-thumb);
   border-radius: 999px;
 }
 
@@ -370,10 +481,176 @@ body {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
     @apply font-sans;
   }
+  /* Override shadcn body defaults with semantic adaptive tokens */
+  body {
+    background-color: var(--bg-base)   !important;
+    color:            var(--text-base) !important;
+  }
+
+  /* ── Form element color reset ─────────────────────────────
+     Browsers do NOT always inherit `color` from body into
+     input / textarea / select elements.
+     Force semantic text token on ALL form controls so typed
+     text is always visible regardless of component library.
+     ────────────────────────────────────────────────────── */
+  input,
+  textarea,
+  select {
+    color: var(--text-base);
+    background-color: transparent;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--text-faint);
+  }
+}
+
+/* ─── Accessibility ───────────────────────────────────────────────────────── */
+
+/* Skip navigation link — visually hidden until focused */
+.skip-nav {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: -1;
+}
+.skip-nav:focus {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 9999;
+  width: auto;
+  height: auto;
+  padding: 0.75rem 1.25rem;
+  background: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border: 2px solid hsl(var(--ring));
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  outline: none;
+}
+
+/* Ensure focus rings are visible on interactive elements */
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Screen-reader-only utility (supplements Tailwind's sr-only) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Respect reduced-motion preference — disable animations for users who opt out */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── RTL Support ─────────────────────────────────────────────────────────── */
+
+/* When the html[dir="rtl"] attribute is set (Arabic locale),
+ * flip logical layout properties so the UI renders correctly
+ * for right-to-left reading order.
+ */
+[dir="rtl"] {
+  /* Sidebar should render on the right in RTL layouts */
+  --sidebar-side: right;
+}
+
+[dir="rtl"] .sidebar-left {
+  border-right: none;
+  border-left: 1px solid hsl(var(--border));
+  left: auto;
+  right: 0;
+}
+
+/* Flip icon-before-text patterns */
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+/* Input prefix icons */
+[dir="rtl"] input[type="text"],
+[dir="rtl"] input[type="email"],
+[dir="rtl"] input[type="password"],
+[dir="rtl"] textarea {
+  text-align: right;
+  direction: rtl;
+}
+
+/* Ensure Arabic Amiri falls back gracefully and overrides Next.js variables */
+html[dir="rtl"] {
+  --font-sans: var(--font-arabic), "Amiri", serif !important;
+  font-family: var(--font-arabic), "Amiri", serif !important;
+}
+/* ─── Topology Dashboard Utilities ─────────────────────────────────────── */
+
+@keyframes topology-flow {
+  0% { stroke-dashoffset: 100; opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; filter: blur(8px); }
+  50% { opacity: 0.8; filter: blur(12px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.topology-line {
+  stroke-dasharray: 10, 10;
+  animation: topology-flow 3s linear infinite;
+}
+
+.glow-pulse {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.float-slow {
+  animation: float 6s ease-in-out infinite;
+}
+
+.glass-morphism {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-base);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+.dark .glass-morphism {
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-morphism:hover {
+  border: 1px solid rgba(212, 165, 116, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(212, 165, 116, 0.1);
 }

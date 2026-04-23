@@ -1,0 +1,175 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Algo salió mal. Por favor, inténtalo de nuevo.",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "submit": "Enviar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "close": "Cerrar",
+    "confirm": "Confirmar",
+    "or": "o",
+    "and": "y",
+    "yes": "Sí",
+    "no": "No",
+    "optional": "Opcional",
+    "required": "Requerido",
+    "learnMore": "Más información"
+  },
+  "nav": {
+    "dashboard": "Panel",
+    "library": "Biblioteca",
+    "exercises": "Ejercicios",
+    "advisor": "Asesor IA",
+    "community": "Comunidad",
+    "couple": "Mi Pareja",
+    "settings": "Ajustes",
+    "signOut": "Cerrar sesión"
+  },
+  "auth": {
+    "signIn": "Iniciar sesión",
+    "signUp": "Registrarse",
+    "signOut": "Cerrar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "noAccount": "¿No tienes cuenta?",
+    "haveAccount": "¿Ya tienes cuenta?",
+    "continueWithGoogle": "Continuar con Google",
+    "welcomeBack": "Bienvenido de nuevo",
+    "createAccount": "Crear una cuenta",
+    "signingIn": "Iniciando sesión...",
+    "errors": {
+      "invalidCredentials": "Correo o contraseña incorrectos.",
+      "emailInUse": "Este correo electrónico ya está registrado.",
+      "weakPassword": "La contraseña debe tener al menos 8 caracteres."
+    }
+  },
+  "dashboard": {
+    "title": "Panel",
+    "greeting": "Bienvenido, {name}",
+    "checkIn": "Check-in Diario",
+    "checkInDescription": "Tómate un momento para reflexionar sobre tu día.",
+    "streak": "Racha de {count} días",
+    "recentActivity": "Actividad Reciente"
+  },
+  "checkIn": {
+    "title": "Check-in Diario",
+    "subtitle": "Tómate un momento para reflexionar sobre tu día y conexión.",
+    "mood": "Estado de Ánimo Personal",
+    "connection": "Conexión en la Relación",
+    "notes": "Notas Privadas",
+    "notesPlaceholder": "¿Qué tienes en mente? Esto es seguro y privado.",
+    "save": "Guardar Check-in",
+    "saving": "Guardando...",
+    "success": "¡Check-in Completo!",
+    "successMessage": "Gracias por tomarte el tiempo de reflexionar.",
+    "struggling": "Luchando",
+    "thriving": "Prosperando",
+    "distant": "Distante",
+    "connected": "Profundamente Conectado"
+  },
+  "library": {
+    "title": "Biblioteca de Contenido",
+    "subtitle": "Explora nuestra colección seleccionada de artículos y guías.",
+    "searchPlaceholder": "Buscar artículos...",
+    "allCategories": "Todas las Categorías",
+    "minRead": "{count} min de lectura",
+    "locked": "Premium",
+    "readNow": "Leer Ahora",
+    "noResults": "No se encontraron artículos. Prueba con otra búsqueda."
+  },
+  "exercises": {
+    "title": "Ejercicios",
+    "subtitle": "Practica juntos para profundizar vuestra conexión.",
+    "start": "Iniciar Ejercicio",
+    "complete": "Completado",
+    "next": "Siguiente Paso",
+    "finish": "Finalizar",
+    "noExercises": "No hay ejercicios disponibles."
+  },
+  "advisor": {
+    "title": "Asesor de Bienestar IA",
+    "subtitle": "Tu guía empático y privado.",
+    "placeholder": "Pregunta a tu asesor...",
+    "send": "Enviar",
+    "limitReached": "Límite diario alcanzado.",
+    "limitDescription": "Mejora a Premium para acceso ilimitado.",
+    "disclaimer": "Esto no sustituye a la terapia profesional."
+  },
+  "community": {
+    "title": "Comunidad",
+    "subtitle": "Conéctate con otros en su camino de bienestar.",
+    "newPost": "Nueva Publicación",
+    "reply": "Responder",
+    "vote": "Votar",
+    "anonymous": "Anónimo",
+    "postTitle": "Título de la publicación",
+    "postBody": "Comparte tus pensamientos...",
+    "noTopics": "No hay temas disponibles."
+  },
+  "couple": {
+    "title": "Mi Pareja",
+    "connected": "Conectado",
+    "invitePartner": "Invitar a tu pareja",
+    "sharedNotes": "Notas Compartidas",
+    "addNote": "Añadir una nota...",
+    "connectionHealth": "Salud de la Conexión",
+    "notLinked": "Aún no has vinculado una pareja."
+  },
+  "settings": {
+    "title": "Ajustes",
+    "profile": "Perfil",
+    "subscription": "Suscripción",
+    "language": "Idioma",
+    "privacy": "Privacidad",
+    "couple": "Ajustes de Pareja",
+    "languageTitle": "Preferencias de Idioma",
+    "languageDescription": "Elige tu idioma preferido para la interfaz de Intimera."
+  },
+  "pricing": {
+    "title": "Precios Simples y Transparentes",
+    "free": "Gratis",
+    "premium": "Premium",
+    "couples": "Parejas",
+    "monthly": "por mes",
+    "yearly": "por año",
+    "getStarted": "Comenzar",
+    "currentPlan": "Plan Actual",
+    "upgrade": "Mejorar",
+    "faq": "Preguntas Frecuentes"
+  },
+  "locales": {
+    "en": "English",
+    "ar": "العربية",
+    "es": "Español",
+    "fr": "Français"
+  },
+  "couple": {
+    "title": "Panel de Pareja",
+    "description": "Vuestro espacio compartido para la conexión y el crecimiento.",
+    "emptyTitle": "Aún no vinculado",
+    "emptyDescription": "Conéctate con tu pareja para desbloquear funciones compartidas, notas e información sobre vuestra conexión.",
+    "invitePartner": "Invitar Pareja",
+    "waitingTitle": "Esperando a la pareja",
+    "waitingDescription": "Tu invitación ha sido enviada. Esperando a que tu pareja la acepte.",
+    "manageInvitations": "Gestionar Invitaciones",
+    "connectionHealth": "Salud de la Conexión",
+    "connectionHealthDescription": "Basado en vuestros recientes check-ins compartidos.",
+    "sharedStats": "Ejercicios Completados",
+    "milestonesReached": "Logros Alcanzados",
+    "recommendedActivity": "Actividad Recomendada",
+    "recommendedActivityDescription": "Probad esto juntos para daros una alegría hoy.",
+    "startExercise": "Iniciar Ejercicio"
+  },
+  "bookmarks": {
+    "title": "Tus Marcadores",
+    "description": "Artículos, ejercicios y audio guardados para un fácil acceso.",
+    "emptyTitle": "No hay marcadores aún",
+    "emptyDescription": "Guarda tu contenido favorito de la biblioteca para verlo aquí.",
+    "exploreContent": "Explorar Biblioteca"
+  }
+}

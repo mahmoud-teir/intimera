@@ -1,0 +1,175 @@
+{
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite. Veuillez réessayer.",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "submit": "Envoyer",
+    "back": "Retour",
+    "next": "Suivant",
+    "close": "Fermer",
+    "confirm": "Confirmer",
+    "or": "ou",
+    "and": "et",
+    "yes": "Oui",
+    "no": "Non",
+    "optional": "Optionnel",
+    "required": "Requis",
+    "learnMore": "En savoir plus"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "library": "Bibliothèque",
+    "exercises": "Exercices",
+    "advisor": "Conseiller IA",
+    "community": "Communauté",
+    "couple": "Mon Couple",
+    "settings": "Paramètres",
+    "signOut": "Se déconnecter"
+  },
+  "auth": {
+    "signIn": "Se connecter",
+    "signUp": "S'inscrire",
+    "signOut": "Se déconnecter",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "forgotPassword": "Mot de passe oublié ?",
+    "noAccount": "Pas encore de compte ?",
+    "haveAccount": "Déjà un compte ?",
+    "continueWithGoogle": "Continuer avec Google",
+    "welcomeBack": "Bon retour",
+    "createAccount": "Créer un compte",
+    "signingIn": "Connexion en cours...",
+    "errors": {
+      "invalidCredentials": "E-mail ou mot de passe incorrect.",
+      "emailInUse": "Cette adresse e-mail est déjà utilisée.",
+      "weakPassword": "Le mot de passe doit contenir au moins 8 caractères."
+    }
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "greeting": "Bienvenue, {name}",
+    "checkIn": "Bilan Quotidien",
+    "checkInDescription": "Prenez un moment pour réfléchir à votre journée.",
+    "streak": "Série de {count} jours",
+    "recentActivity": "Activité Récente"
+  },
+  "checkIn": {
+    "title": "Bilan Quotidien",
+    "subtitle": "Prenez un moment pour réfléchir à votre journée et votre connexion.",
+    "mood": "Humeur Personnelle",
+    "connection": "Connexion Relationnelle",
+    "notes": "Notes Privées",
+    "notesPlaceholder": "Qu'avez-vous en tête ? C'est sécurisé et privé.",
+    "save": "Enregistrer le Bilan",
+    "saving": "Enregistrement...",
+    "success": "Bilan Complété !",
+    "successMessage": "Merci de prendre le temps de réfléchir.",
+    "struggling": "En difficulté",
+    "thriving": "Épanoui",
+    "distant": "Distant",
+    "connected": "Profondément Connecté"
+  },
+  "library": {
+    "title": "Bibliothèque de Contenu",
+    "subtitle": "Explorez notre collection d'articles et de guides.",
+    "searchPlaceholder": "Rechercher des articles...",
+    "allCategories": "Toutes les Catégories",
+    "minRead": "{count} min de lecture",
+    "locked": "Premium",
+    "readNow": "Lire Maintenant",
+    "noResults": "Aucun article trouvé. Essayez une autre recherche."
+  },
+  "exercises": {
+    "title": "Exercices",
+    "subtitle": "Pratiquez ensemble pour approfondir votre connexion.",
+    "start": "Commencer l'Exercice",
+    "complete": "Terminé",
+    "next": "Étape Suivante",
+    "finish": "Terminer",
+    "noExercises": "Aucun exercice disponible."
+  },
+  "advisor": {
+    "title": "Conseiller Bien-être IA",
+    "subtitle": "Votre guide empathique et privé.",
+    "placeholder": "Posez une question à votre conseiller...",
+    "send": "Envoyer",
+    "limitReached": "Limite quotidienne atteinte.",
+    "limitDescription": "Passez à Premium pour un accès illimité.",
+    "disclaimer": "Ceci ne remplace pas une thérapie professionnelle."
+  },
+  "community": {
+    "title": "Communauté",
+    "subtitle": "Connectez-vous avec d'autres sur leur parcours bien-être.",
+    "newPost": "Nouvelle Publication",
+    "reply": "Répondre",
+    "vote": "Voter",
+    "anonymous": "Anonyme",
+    "postTitle": "Titre de la publication",
+    "postBody": "Partagez vos pensées...",
+    "noTopics": "Aucun sujet disponible."
+  },
+  "couple": {
+    "title": "Mon Couple",
+    "connected": "Connecté",
+    "invitePartner": "Inviter mon partenaire",
+    "sharedNotes": "Notes Partagées",
+    "addNote": "Ajouter une note...",
+    "connectionHealth": "Santé de la Connexion",
+    "notLinked": "Vous n'avez pas encore lié de partenaire."
+  },
+  "settings": {
+    "title": "Paramètres",
+    "profile": "Profil",
+    "subscription": "Abonnement",
+    "language": "Langue",
+    "privacy": "Confidentialité",
+    "couple": "Paramètres du Couple",
+    "languageTitle": "Préférences de Langue",
+    "languageDescription": "Choisissez votre langue préférée pour l'interface Intimera."
+  },
+  "pricing": {
+    "title": "Tarification Simple et Transparente",
+    "free": "Gratuit",
+    "premium": "Premium",
+    "couples": "Couples",
+    "monthly": "par mois",
+    "yearly": "par an",
+    "getStarted": "Commencer",
+    "currentPlan": "Plan Actuel",
+    "upgrade": "Mettre à Niveau",
+    "faq": "Questions Fréquentes"
+  },
+  "locales": {
+    "en": "English",
+    "ar": "العربية",
+    "es": "Español",
+    "fr": "Français"
+  },
+  "couple": {
+    "title": "Tableau de Bord du Couple",
+    "description": "Votre espace partagé pour la connexion et la croissance.",
+    "emptyTitle": "Pas encore lié",
+    "emptyDescription": "Connectez-vous avec votre partenaire pour débloquer les fonctionnalités partagées, les notes et les informations sur votre connexion.",
+    "invitePartner": "Inviter le Partenaire",
+    "waitingTitle": "En attente du partenaire",
+    "waitingDescription": "Votre invitation a été envoyée. En attente de l'acceptation de votre partenaire.",
+    "manageInvitations": "Gérer les Invitations",
+    "connectionHealth": "Santé de la Connexion",
+    "connectionHealthDescription": "Basé sur vos récents bilans partagés.",
+    "sharedStats": "Exercices Terminés",
+    "milestonesReached": "Jalons Atteints",
+    "recommendedActivity": "Activité Recommandée",
+    "recommendedActivityDescription": "Essayez ceci ensemble pour apporter un peu de joie aujourd'hui.",
+    "startExercise": "Commencer l'Exercice"
+  },
+  "bookmarks": {
+    "title": "Vos Signets",
+    "description": "Articles, exercices et audios enregistrés pour un accès facile.",
+    "emptyTitle": "Pas encore de signets",
+    "emptyDescription": "Enregistrez vos contenus préférés de la bibliothèque pour les voir ici.",
+    "exploreContent": "Explorer la Bibliothèque"
+  }
+}

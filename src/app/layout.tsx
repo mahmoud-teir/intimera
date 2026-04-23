@@ -1,9 +1,22 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Geist } from "next/font/google";
+import { Geist, Amiri } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { NextIntlClientProvider } from "next-intl";
+import { isRTL, type Locale } from "@/i18n/routing";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/components/theme-provider";
+import { PostHogProvider } from "@/lib/analytics/posthog";
+import { PostHogPageView } from "@/lib/analytics/events";
+import { ConsentBanner } from "@/components/analytics/consent-banner";
+import { cookies, headers } from "next/headers";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const amiri = Amiri({ 
+	subsets: ["arabic"], 
+	weight: ["400", "700"],
+	variable: "--font-arabic" 
+});
 
 export const metadata: Metadata = {
 	title: {
@@ -40,15 +53,53 @@ export const metadata: Metadata = {
 	},
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	// Read locale from header (set by middleware during rewrite) or cookie
+	const headerStore = await headers();
+	const cookieStore = await cookies();
+	
+	const locale = (headerStore.get("x-locale") || cookieStore.get("NEXT_LOCALE")?.value || "en") as Locale;
+	const validLocales: Locale[] = ["en", "ar", "es", "fr"];
+	const safeLocale: Locale = validLocales.includes(locale) ? locale : "en";
+
+	// Load translation messages for this locale
+	const messages = (await import(`../../messages/${safeLocale}.json`)).default;
+	const dir = isRTL(safeLocale) ? "rtl" : "ltr";
+
 	return (
-		<html lang="en" className={cn("dark", "font-sans", geist.variable)}>
-			<body className="min-h-dvh bg-obsidian text-ivory antialiased">
-				{children}
+		<html
+			lang={safeLocale}
+			dir={dir}
+			suppressHydrationWarning
+			className={cn("font-sans", geist.variable, amiri.variable)}
+		>
+			<body className="min-h-dvh antialiased overflow-x-hidden" suppressHydrationWarning>
+				<NextIntlClientProvider messages={messages} locale={safeLocale}>
+					<PostHogProvider>
+						<ThemeProvider
+							attribute="class"
+							defaultTheme="system"
+							enableSystem
+							disableTransitionOnChange={false}
+						>
+							{/* Skip navigation for keyboard users */}
+							<a href="#main-content" className="skip-nav">
+								Skip to main content
+							</a>
+							<PostHogPageView />
+							<TooltipProvider>
+								<main id="main-content">
+									{children}
+								</main>
+							</TooltipProvider>
+							<ConsentBanner />
+						</ThemeProvider>
+					</PostHogProvider>
+				</NextIntlClientProvider>
 			</body>
 		</html>
 	);

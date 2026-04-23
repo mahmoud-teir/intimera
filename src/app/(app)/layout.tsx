@@ -1,12 +1,16 @@
-export default function AppLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+import { ReactNode } from "react";
+import { AppShell } from "@/components/layout/app-shell";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+
+export default async function AppLayout({ children }: { children: ReactNode }) {
+	const session = await auth.api.getSession({
+		headers: await headers()
+	});
+
 	return (
-		<div className="flex min-h-dvh bg-obsidian">
-			{/* Sidebar will be added in TASK-016 */}
-			<main className="flex-1">{children}</main>
-		</div>
+		<AppShell user={session?.user}>
+			{children}
+		</AppShell>
 	);
 }

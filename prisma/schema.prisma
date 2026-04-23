@@ -27,6 +27,7 @@ model User {
   image         String?
   role          Role      @default(USER)
   locale        String    @default("en")
+  stripeCustomerId String? @unique
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
@@ -95,7 +96,10 @@ model Verification {
 
 enum Role {
   USER
+  PREMIUM
+  COUPLES
   ADMIN
+  CONTENT_MANAGER
 }
 
 // ─────────────────────────────────────────────────────
@@ -176,6 +180,7 @@ model Content {
   relationshipStage RelationshipStage @default(ANY)
   readingTimeMin  Int           @default(5)
   sortOrder       Int           @default(0)
+  coverImage      String?
   publishedAt     DateTime?
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
@@ -199,10 +204,14 @@ model ContentTranslation {
   title     String
   summary   String
   body      String // Markdown content
+  embedding Unsupported("vector(1536)")? // pgvector OpenAI embeddings
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   content Content @relation(fields: [contentId], references: [id], onDelete: Cascade)
+
+  // Note: HNSW index must be created via raw SQL: 
+  // CREATE INDEX content_embedding_idx ON content_translation USING hnsw (embedding vector_l2_ops);
 
   @@unique([contentId, locale])
   @@map("content_translation")
@@ -212,6 +221,7 @@ enum ContentStatus {
   DRAFT
   PUBLISHED
   ARCHIVED
+  PENDING
 }
 
 enum Difficulty {
@@ -241,6 +251,9 @@ model Exercise {
   difficulty      Difficulty   @default(BEGINNER)
   relationshipStage RelationshipStage @default(ANY)
   estimatedTimeMin Int         @default(10)
+  title           String?
+  description     String?
+  coverImage      String?
   status          ContentStatus @default(DRAFT)
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
